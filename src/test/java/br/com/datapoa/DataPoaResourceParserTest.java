@@ -23,9 +23,10 @@ public class DataPoaResourceParserTest {
 		                                    .resource(stubResourceId)
 											.limit(limit)
 											.build();
-		String resultExpected = new StringBuilder(DataPoaUrls.DATA_SEARCH).append("resource_id=").append(stubResourceId)
-		                                                                  .append("&limit=").append(limit)
-		                                                                  .toString();
+		String resultExpected = new StringBuilder(DataPoaUtil.getProvider().getDataSearchUrl())
+		                                         .append("resource_id=").append(stubResourceId)
+		                                         .append("&limit=").append(limit)
+		                                         .toString();
 
 		// when
 		URL resourceURL = DataPoaResourceParser.toUrl(dpResource);

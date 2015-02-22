@@ -1,30 +1,29 @@
 package br.com.datapoa;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.text.DateFormat;
 import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
 import org.junit.Before;
 import org.junit.Test;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+
+import br.com.datapoa.entities.DataPoaEntity;
+import br.com.datapoa.entities.DataPoaResult;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
 public class DataPoaResponseParserTest {
     
     String stubedJsonFromDataPoa;
-    
-    @Before
-    public void setUp()
-    {
-        
-        ClassLoader classLoader = getClass().getClassLoader();
-        URL url = classLoader.getResource("json/stub_result_from_datapoa.json");
-        File file = new File(classLoader.getResource("json/stub_result_from_datapoa.json").getFile());
-        stubedJsonFromDataPoa = file.toString();
-        
-    }
     
     @Test
     public void testGivenJsonStringWhenParseItShouldReturnInstanceOfClass()
@@ -45,6 +44,29 @@ public class DataPoaResponseParserTest {
         assertEquals(expectedName, result.getName());
         assertEquals(expectedAge, result.getAge());
         assertEquals(expectedBolean, result.isCrazy());
+        
+    }
+    
+    @Test
+    public void testGivenRealJsonStringWhenParseItShouldReturnInstanceDataPoaEntity() throws IOException
+    {
+        // given
+    	ClassLoader classLoader = getClass().getClassLoader();
+        byte[] bytes = Files.readAllBytes(Paths.get(classLoader.getResource("json/stub_result_from_datapoa.json").getPath()));
+         
+        String stubedJsonFromDataPoa = new String(bytes);
+    	
+    	DataPoaResponse mockedResponse = mock(DataPoaResponse.class);
+        when(mockedResponse.getJsonString()).thenReturn(stubedJsonFromDataPoa);
+        
+        // when
+        DataPoaEntity result = new DataPoaResponseParser(mockedResponse).parseTo(DataPoaEntity.class);
+        
+        // then
+        assertNotNull(result);
+        assertNotNull(result.getResult());
+        assertNotNull(result.getResult().getFields());
+        assertNotNull(result.getResult().getRecords());
         
     }
     
@@ -74,5 +96,5 @@ public class DataPoaResponseParserTest {
         }
 
     }
-
+    
 }

@@ -6,7 +6,7 @@ import org.junit.Test;
 
 public class DataPoaResourceQueryBuilderTest {
 
-    private String expectedAction = DataPoaUrls.DATA_SEARCH;
+    private String expectedAction = DataPoaUtil.getProvider().getDataSearchUrl();
     private String expectedResourceId = "123";
     private Integer expectedLimit = 1;
     

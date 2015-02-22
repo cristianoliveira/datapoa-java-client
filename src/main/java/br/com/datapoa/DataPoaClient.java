@@ -15,8 +15,7 @@ public class DataPoaClient {
     public DataPoaEntity doRequest() throws IOException {
         DataPoaRequest request = new DataPoaRequest(dpResource);
         DataPoaResponse dpResponse = request.request();
-        return new DataPoaResponseParser(dpResponse)
-                        .parseTo(DataPoaEntity.class);
+        return new DataPoaResponseParser(dpResponse).parseTo(DataPoaEntity.class);
     }
 
     public <T> T doRequest(Class<T> clas) throws IOException {

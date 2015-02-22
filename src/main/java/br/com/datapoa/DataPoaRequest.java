@@ -19,8 +19,7 @@ public class DataPoaRequest {
     public DataPoaResponse request() throws IOException {
         HttpClient httpCliente = new HttpClient();
         URL resourceURL = DataPoaResourceParser.toUrl(dpResource);
-        HttpResponse httpResponse = httpCliente.request(HttpMethod.GET,
-                        resourceURL);
+        HttpResponse httpResponse = httpCliente.request(HttpMethod.GET, resourceURL);
 
         return new DataPoaResponseFactory().createFrom(httpResponse);
     }

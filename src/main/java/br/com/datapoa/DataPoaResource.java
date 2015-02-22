@@ -2,13 +2,20 @@ package br.com.datapoa;
 
 class DataPoaResource {
 
-    private String action;
+    private IDataProvider provider;
+	
+	private String action;
     private String resourceId;
     private Integer limit;
+    
+    DataPoaResource()
+    {
+    	this.provider = DataPoaUtil.getProvider();
+    }
 
     public String getAction() {
         if (action == null)
-            return DataPoaUrls.DATA_SEARCH;
+            return provider.getDataSearchUrl();
         return action;
     }
 

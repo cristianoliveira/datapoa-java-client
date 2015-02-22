@@ -3,21 +3,27 @@ package br.com.datapoa.entities;
 import java.util.List;
 import java.util.Map;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import com.google.gson.annotations.SerializedName;
+
 public class DataPoaResult {
 
-    private String resource_id;
+	@SerializedName("resource_id")
+    private String resourceId;
     private List<DataPoaField> fields;
-    private Map<String, String> results;
-    private Map<String, String> _links;
+    private List<JsonObject> records;
+    @SerializedName("_links")
+    private JsonObject links;
     private Integer limit;
     private Integer total;
 
-    public String getResource_id() {
-        return resource_id;
+    public String getResourceId() {
+        return resourceId;
     }
 
-    public void setResource_id(String resource_id) {
-        this.resource_id = resource_id;
+    public void setResourceId(String resourceId) {
+        this.resourceId = resourceId;
     }
 
     public List<DataPoaField> getFields() {
@@ -26,22 +32,6 @@ public class DataPoaResult {
 
     public void setFields(List<DataPoaField> fields) {
         this.fields = fields;
-    }
-
-    public Map<String, String> getResults() {
-        return results;
-    }
-
-    public void setResults(Map<String, String> results) {
-        this.results = results;
-    }
-
-    public Map<String, String> get_links() {
-        return _links;
-    }
-
-    public void set_links(Map<String, String> _links) {
-        this._links = _links;
     }
 
     public Integer getLimit() {
@@ -58,6 +48,22 @@ public class DataPoaResult {
 
     public void setTotal(Integer total) {
         this.total = total;
+    }
+
+	public List<JsonObject> getRecords() {
+	    return records;
+    }
+
+	public void setRecords(List<JsonObject> records) {
+	    this.records = records;
+    }
+
+	public JsonObject getLinks() {
+	    return links;
+    }
+
+	public void setLinks(JsonObject links) {
+	    this.links = links;
     }
 
 }
