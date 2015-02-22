@@ -13,31 +13,31 @@ import br.com.datapoa.http.HttpResponse;
 
 public class HttpResponseTest {
 
-	@Test
-	public void testGivenStubInputStreamWhenAsStringItShouldReturnString() throws IOException 
-	{
-		// given
-		String resultExpected = "{ result: 1 }";
-		InputStream stubInputStream = new ByteArrayInputStream(resultExpected.getBytes());
-		HttpResponse response = new HttpResponse(stubInputStream);
-		
-		// when
-		String result = response.asString();
-		
-		// then
-		assertEquals(resultExpected, result);
-	}
-	
-	public void testGivenNullInputStreamWhenAsStringItShouldReturnNull() throws IOException 
-	{
-		// given
-		HttpResponse response = new HttpResponse(null);
-		
-		// when
-		String result = response.asString();
-		
-		// then raise IOException
-		assertNull(result);
-	}
+    @Test
+    public void testGivenStubInputStreamWhenAsStringItShouldReturnString() throws IOException 
+    {
+        // given
+        String resultExpected = "{ result: 1 }";
+        InputStream stubInputStream = new ByteArrayInputStream(resultExpected.getBytes());
+        HttpResponse response = new HttpResponse(stubInputStream);
+        
+        // when
+        String result = response.asString();
+        
+        // then
+        assertEquals(resultExpected, result);
+    }
+    
+    public void testGivenNullInputStreamWhenAsStringItShouldReturnNull() throws IOException 
+    {
+        // given
+        HttpResponse response = new HttpResponse(null);
+        
+        // when
+        String result = response.asString();
+        
+        // then raise IOException
+        assertNull(result);
+    }
 
 }
