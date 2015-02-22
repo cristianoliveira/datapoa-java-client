@@ -12,15 +12,13 @@ public class HttpClient {
         return request(method, url.toString(), null);
     }
 
-    public HttpResponse request(HttpMethod method, String url)
-                    throws IOException {
+    public HttpResponse request(HttpMethod method, String url) throws IOException {
         return request(method, url, null);
     }
 
     public HttpResponse request(HttpMethod method, String url,
-                    HttpParameterSet httpParameters) throws IOException {
-        HttpRequest request = new HttpRequestFactory().getRequest(method, url,
-                        httpParameters);
+        HttpParameterSet httpParameters) throws IOException {
+        HttpRequest request = new HttpRequestFactory().getRequest(method, url, httpParameters);
 
         return request.doRequest();
     }

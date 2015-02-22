@@ -34,5 +34,9 @@ public class Entity {
 	    this.error = error;
     }
 
+	public boolean hasError()
+	{
+		return error != null;
+	}
 
 }

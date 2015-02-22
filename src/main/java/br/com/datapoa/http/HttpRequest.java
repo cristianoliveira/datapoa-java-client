@@ -1,5 +1,6 @@
 package br.com.datapoa.http;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -14,9 +15,15 @@ public class HttpRequest {
 
     public HttpResponse doRequest() throws IOException {
 
-        InputStream inStream = httpConnection.getInputStream();
-
-        return new HttpResponse(inStream);
+    	try {
+	    
+    		InputStream inStream = httpConnection.getInputStream();
+    		return new HttpResponse(inStream);
+    		
+        } catch (FileNotFoundException fileNotFoundException) {
+	        
+        	throw new IOException("Provider return error: "+httpConnection.getResponseCode());
+        }
     }
 
     public HttpURLConnection getHttpURLConnection() {
