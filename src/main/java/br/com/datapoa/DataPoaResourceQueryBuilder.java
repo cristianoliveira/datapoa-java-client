@@ -1,13 +1,16 @@
 package br.com.datapoa;
 
-import java.net.MalformedURLException;
-import java.net.URL;
-
 public class DataPoaResourceQueryBuilder {
 	
 	private DataPoaResource dpResource;
 	
-	public DataPoaResourceQueryBuilder build(String resourceId)
+	public DataPoaResourceQueryBuilder action(String action)
+	{
+		getResource().setAction(action);
+		return this;
+	}
+	
+	public DataPoaResourceQueryBuilder resource(String resourceId)
 	{
 		getResource().setResourceId(resourceId);
 		return this;
@@ -22,11 +25,6 @@ public class DataPoaResourceQueryBuilder {
 	public DataPoaResource build()
 	{
 		return dpResource;
-	}
-	
-	public URL buildSearchUrl() throws MalformedURLException
-	{
-		return new DataPoaResourceParser(dpResource).toUrl();
 	}
 	
 	private DataPoaResource getResource()

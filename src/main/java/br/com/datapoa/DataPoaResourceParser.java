@@ -5,20 +5,16 @@ import java.net.URL;
 
 public class DataPoaResourceParser {
 	
-	DataPoaResource dpResource;
-	
-	public DataPoaResourceParser(DataPoaResource dpResource)
+	public static URL toUrl(DataPoaResource dpResource) throws MalformedURLException
 	{
-		this.dpResource = dpResource;
-	}
-	
-	public URL toUrl() throws MalformedURLException
-	{
-		StringBuilder url = new StringBuilder(DataPoaUrls.DATA_SEARCH);
+		if(dpResource == null || dpResource.getResourceId().isEmpty() )
+			throw new IllegalArgumentException("DataPoaResource must to be informed.");
+		
+		StringBuilder url = new StringBuilder(dpResource.getAction());
 		url.append("resource_id="+dpResource.getResourceId());
 		
 		if(dpResource.getLimit()!=null)
-			url.append("limit="+dpResource.getLimit());
+			url.append("&limit="+dpResource.getLimit());
 		
 		return new URL(url.toString());
 	}

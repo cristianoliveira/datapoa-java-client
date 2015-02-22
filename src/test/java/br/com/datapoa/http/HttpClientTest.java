@@ -17,48 +17,50 @@ import br.com.datapoa.http.HttpResponse;
 
 @RunWith(MockitoJUnitRunner.class)
 public class HttpClientTest {
+	
+	final String GITHUB_README = "https://raw.githubusercontent.com/DataPoa/datapoa-java-client/master/README.md";
 
 	@Test
 	public void testGivenOnlyUrlWhenGetRequestItShouldReturnHttpResponse() throws IOException 
 	{
 		// given
-		HttpClient httpClient = new HttpClient(HttpMethod.GET);
-		String googleUrl = "http://google.com";
+		HttpClient httpClient = new HttpClient();
+		String googleUrl = GITHUB_README;
 		
 		// when
-		HttpResponse response = httpClient.request(googleUrl);
+		HttpResponse response = httpClient.request(HttpMethod.POST, googleUrl);
 		
 		// then
-		assertEquals(response.getClass(), HttpResponse.class);
+		assertNotNull(response);
 	}
 	
 	@Test
 	public void testGivenValidParametersWhenGetRequestItShouldReturnHttpResponse() throws IOException
 	{
 		// given
-		HttpClient httpClient = new HttpClient(HttpMethod.GET);
+		HttpClient httpClient = new HttpClient();
 		String googleUrl = "http://google.com";
 		HttpParameterSet parameters = HttpParameterSet.build();
 		parameters.add(new HttpParameter("q","Test"));
 		
 		// when
-		HttpResponse response = httpClient.request(googleUrl);
+		HttpResponse response = httpClient.request(HttpMethod.GET, googleUrl);
 		
 		// then
-		assertEquals(response.getClass(), HttpResponse.class);
+		assertNotNull(response);
 	}
 	
 	@Test
 	public void testGivenURLWhenGetRequestItShouldReturnHttpResponse() throws IOException
 	{
 		// given
-		HttpClient httpClient = new HttpClient(HttpMethod.GET);
+		HttpClient httpClient = new HttpClient();
 		URL googleUrl = new URL("http://google.com");
 		HttpParameterSet parameters = HttpParameterSet.build();
 		parameters.add(new HttpParameter("q","Test"));
 		
 		// when
-		HttpResponse response = httpClient.request(googleUrl);
+		HttpResponse response = httpClient.request(HttpMethod.GET, googleUrl);
 		
 		// then
 		assertEquals(response.getClass(), HttpResponse.class);
@@ -69,11 +71,11 @@ public class HttpClientTest {
 	public void testGivenInvalidUrlWhenGetRequestItShouldRaiseExceotion() throws IOException 
 	{
 		// given
-		HttpClient httpClient = new HttpClient(HttpMethod.POST);
+		HttpClient httpClient = new HttpClient();
 		String invalidUrl = "http://";
 		
 		// when
-		httpClient.request(invalidUrl);
+		httpClient.request(HttpMethod.POST, invalidUrl);
 		
 		// then raise IllegalArgumentException
 	}

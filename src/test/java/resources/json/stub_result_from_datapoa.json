@@ -1,0 +1,279 @@
+{
+help: "Search a DataStore resource. The datastore_search action allows you to search data in a resource. DataStore resources that belong to private CKAN resource can only be read by you if you have access to the CKAN resource and send the appropriate authorization. :param resource_id: id or alias of the resource to be searched against :type resource_id: string :param filters: matching conditions to select, e.g {"key1": "a", "key2": "b"} (optional) :type filters: dictionary :param q: full text query (optional) :type q: string :param plain: treat as plain text query (optional, default: true) :type plain: bool :param language: language of the full text query (optional, default: english) :type language: string :param limit: maximum number of rows to return (optional, default: 100) :type limit: int :param offset: offset this number of rows (optional) :type offset: int :param fields: fields to return (optional, default: all fields in original order) :type fields: list or comma separated string :param sort: comma separated field names with ordering e.g.: "fieldname1, fieldname2 desc" :type sort: string Setting the ``plain`` flag to false enables the entire PostgreSQL `full text search query language`_. A listing of all available resources can be found at the alias ``_table_metadata``. .. _full text search query language: http://www.postgresql.org/docs/9.1/static/datatype-textsearch.html#DATATYPE-TSQUERY If you need to download the full resource, read :ref:`dump`. **Results:** The result of this action is a dictionary with the following keys: :rtype: A dictionary with the following keys :param fields: fields/columns and their extra metadata :type fields: list of dictionaries :param offset: query offset value :type offset: int :param limit: query limit value :type limit: int :param filters: query filters :type filters: list of dictionaries :param total: number of total matching records :type total: int :param records: list of matching results :type records: list of dictionaries ",
+success: true,
+result: {
+resource_id: "4e8e51da-6d35-4b8f-ad23-5dadae6cef69",
+fields: [
+{
+type: "int4",
+id: "_id"
+},
+{
+type: "numeric",
+id: "ID_ZPRT_DESP_CUSTEIO"
+},
+{
+type: "numeric",
+id: "EXERCICIO"
+},
+{
+type: "text",
+id: "NOMEPESSOA"
+},
+{
+type: "numeric",
+id: "EMPENHO"
+},
+{
+type: "float8",
+id: "EMPENHADO"
+},
+{
+type: "float8",
+id: "LIQUIDADO"
+},
+{
+type: "float8",
+id: "PAGO"
+},
+{
+type: "timestamp",
+id: "CPTEMP"
+},
+{
+type: "numeric",
+id: "TIPOEMP"
+},
+{
+type: "text",
+id: "TPPROCCONTR"
+},
+{
+type: "numeric",
+id: "NRPROCCONTR"
+},
+{
+type: "numeric",
+id: "ORGAO"
+},
+{
+type: "numeric",
+id: "UNIDORC"
+},
+{
+type: "numeric",
+id: "PROJATIV"
+},
+{
+type: "numeric",
+id: "RUBRICA"
+},
+{
+type: "numeric",
+id: "VINCORC"
+},
+{
+type: "text",
+id: "HISTORICO"
+},
+{
+type: "text",
+id: "NOME_ORGAO"
+},
+{
+type: "text",
+id: "NOME_UNIDORC"
+},
+{
+type: "text",
+id: "NOME_PROJATIV"
+},
+{
+type: "text",
+id: "NOME_RUBRICA"
+},
+{
+type: "text",
+id: "NOME_VINCORC"
+},
+{
+type: "numeric",
+id: "MULTIUSU"
+},
+{
+type: "timestamp",
+id: "DT_LIMITE_DADOS"
+},
+{
+type: "timestamp",
+id: "DTHRATU"
+},
+{
+type: "text",
+id: "GRUPO"
+},
+{
+type: "numeric",
+id: "MES"
+}
+],
+records: [
+{
+DTHRATU: "2014-05-16T16:57:07",
+EMPENHO: "2254",
+ORGAO: "2100",
+NOME_RUBRICA: "AUXILIO-FUNERAL ",
+PROJATIV: "9065",
+NOMEPESSOA: "EDIMILSON FAGUNDES LIMA ",
+ID_ZPRT_DESP_CUSTEIO: "3746901",
+DT_LIMITE_DADOS: "2010-12-31T00:00:00",
+LIQUIDADO: 2248.2,
+NRPROCCONTR: "1003944107",
+RUBRICA: "339008540000",
+NOME_VINCORC: "RECURSO LIVRE - ADMINISTRAÇÃO DIRETA ",
+TPPROCCONTR: "PP",
+NOME_UNIDORC: "ENCARGOS GERAIS DO MUNICÍPIO ",
+EMPENHADO: 2248.2,
+HISTORICO: "Auxilio funeral nos termos do artigo 100, inciso I da L.C. 133/85, referente ao inativo ONILSON LIMA, matr. 073825, por falecimento ocorrido em 12/01/2010.Isento de IRRF conforme parecer da PGM no processo 10625/08.9. ",
+EXERCICIO: "2010",
+CPTEMP: "2010-02-04T00:00:00",
+NOME_PROJATIV: "ENCARGOS ESPECIAIS - EGM ",
+_id: 6905,
+MULTIUSU: "719",
+UNIDORC: "2100",
+VINCORC: "1",
+MES: "2",
+PAGO: 2248.2,
+GRUPO: "4. OUTRAS DESPESAS DE CUSTEIO ",
+TIPOEMP: "2",
+NOME_ORGAO: "ENCARGOS GERAIS DO MUNICÍPIO "
+},
+{
+DTHRATU: "2014-05-16T16:57:00",
+EMPENHO: "365",
+ORGAO: "6000",
+NOME_RUBRICA: "OUTRAS TRANSFERÊNCIAS A PESSOAS ",
+PROJATIV: "2243",
+NOMEPESSOA: "DORA AUGUSTA DA CRUZ ",
+ID_ZPRT_DESP_CUSTEIO: "3745984",
+DT_LIMITE_DADOS: "2010-12-31T00:00:00",
+LIQUIDADO: 88,
+NRPROCCONTR: "7002676095",
+RUBRICA: "339048019900",
+NOME_VINCORC: "RECURSO LIVRE - ADMINISTRAÇÃO DIRETA ",
+TPPROCCONTR: "PP",
+NOME_UNIDORC: "FUNDAÇÃO DE ASSISTÊNCIA SOCIAL E CIDADANIA. ",
+EMPENHADO: 88,
+HISTORICO: "PAGAMENTO DE BOLSA AUXILIO, PROGRAMA DE ERRADICAÇÃO DO TRABALHO INFANTIL - PETI, CFE. MEMORANDO 30/2010 DA CTAC.- ",
+EXERCICIO: "2010",
+CPTEMP: "2010-02-04T00:00:00",
+NOME_PROJATIV: "FAMÍLIA, APOIO E PROTEÇÃO ",
+_id: 6906,
+MULTIUSU: "719",
+UNIDORC: "6001",
+VINCORC: "1",
+MES: "2",
+PAGO: 88,
+GRUPO: "4. OUTRAS DESPESAS DE CUSTEIO ",
+TIPOEMP: "8",
+NOME_ORGAO: "FUNDAÇÃO DE ASSISTÊNCIA SOCIAL E CIDADANIA "
+},
+{
+DTHRATU: "2014-05-16T16:57:34",
+EMPENHO: "40170",
+ORGAO: "4000",
+NOME_RUBRICA: "LIGAÇÃO DE ÁGUA ",
+PROJATIV: "1255",
+NOMEPESSOA: "ESAPLAST INDÚSTRIA E COMÉRCIO DE MAT.PLÁSTICO LTDA ",
+ID_ZPRT_DESP_CUSTEIO: "3750853",
+DT_LIMITE_DADOS: "2010-12-31T00:00:00",
+LIQUIDADO: 566.4,
+NRPROCCONTR: "200900003",
+RUBRICA: "339030990900",
+NOME_VINCORC: "RECURSO LIVRE - ADMINISTRAÇÃO INDIRETA ",
+TPPROCCONTR: "CC",
+NOME_UNIDORC: "DEPARTAMENTO MUNICIPAL DE ÁGUA E ESGOTOS ",
+EMPENHADO: 566.4,
+HISTORICO: "Cód.Mat. --------------------------- Descrição -------------------------- Quantidade -- Unid -- Valor Item ---101046.1 ADAPTADOR MACHO PP(POLIPROPILENO) 20MM X 3/4" P/TUBO PEAD. Local: Marca: ESAPLAST 1.180,00 PC 566,40 Obs.: RMs : 2010 10025 ",
+EXERCICIO: "2010",
+CPTEMP: "2010-02-04T00:00:00",
+NOME_PROJATIV: "MELHORIA NOS PROCESSOS DE ARRECADAÇÃO - DMAE ",
+_id: 6907,
+MULTIUSU: "719",
+UNIDORC: "4000",
+VINCORC: "400",
+MES: "2",
+PAGO: 566.4,
+GRUPO: "2. MATERIAL DE CONSUMO ",
+TIPOEMP: "10",
+NOME_ORGAO: "DEPARTAMENTO MUNICIPAL DE ÁGUA E ESGOTOS "
+},
+{
+DTHRATU: "2014-05-16T16:57:37",
+EMPENHO: "365",
+ORGAO: "6000",
+NOME_RUBRICA: "OUTRAS TRANSFERÊNCIAS A PESSOAS ",
+PROJATIV: "2243",
+NOMEPESSOA: "EVA MARIA DA SILVA SILVA ",
+ID_ZPRT_DESP_CUSTEIO: "3751301",
+DT_LIMITE_DADOS: "2010-12-31T00:00:00",
+LIQUIDADO: 66,
+NRPROCCONTR: "7002676095",
+RUBRICA: "339048019900",
+NOME_VINCORC: "RECURSO LIVRE - ADMINISTRAÇÃO DIRETA ",
+TPPROCCONTR: "PP",
+NOME_UNIDORC: "FUNDAÇÃO DE ASSISTÊNCIA SOCIAL E CIDADANIA. ",
+EMPENHADO: 66,
+HISTORICO: "PAGAMENTO DE BOLSA AUXILIO, PROGRAMA DE ERRADICAÇÃO DO TRABALHO INFANTIL - PETI, CFE. MEMORANDO 30/2010 DA CTAC.- ",
+EXERCICIO: "2010",
+CPTEMP: "2010-02-04T00:00:00",
+NOME_PROJATIV: "FAMÍLIA, APOIO E PROTEÇÃO ",
+_id: 6908,
+MULTIUSU: "719",
+UNIDORC: "6001",
+VINCORC: "1",
+MES: "2",
+PAGO: 66,
+GRUPO: "4. OUTRAS DESPESAS DE CUSTEIO ",
+TIPOEMP: "8",
+NOME_ORGAO: "FUNDAÇÃO DE ASSISTÊNCIA SOCIAL E CIDADANIA "
+},
+{
+DTHRATU: "2014-05-16T16:57:38",
+EMPENHO: "365",
+ORGAO: "6000",
+NOME_RUBRICA: "OUTRAS TRANSFERÊNCIAS A PESSOAS ",
+PROJATIV: "2243",
+NOMEPESSOA: "EVA MARIA SEVERO ",
+ID_ZPRT_DESP_CUSTEIO: "3751316",
+DT_LIMITE_DADOS: "2010-12-31T00:00:00",
+LIQUIDADO: 66,
+NRPROCCONTR: "7002676095",
+RUBRICA: "339048019900",
+NOME_VINCORC: "RECURSO LIVRE - ADMINISTRAÇÃO DIRETA ",
+TPPROCCONTR: "PP",
+NOME_UNIDORC: "FUNDAÇÃO DE ASSISTÊNCIA SOCIAL E CIDADANIA. ",
+EMPENHADO: 66,
+HISTORICO: "PAGAMENTO DE BOLSA AUXILIO, PROGRAMA DE ERRADICAÇÃO DO TRABALHO INFANTIL - PETI, CFE. MEMORANDO 30/2010 DA CTAC.- ",
+EXERCICIO: "2010",
+CPTEMP: "2010-02-04T00:00:00",
+NOME_PROJATIV: "FAMÍLIA, APOIO E PROTEÇÃO ",
+_id: 6909,
+MULTIUSU: "719",
+UNIDORC: "6001",
+VINCORC: "1",
+MES: "2",
+PAGO: 66,
+GRUPO: "4. OUTRAS DESPESAS DE CUSTEIO ",
+TIPOEMP: "8",
+NOME_ORGAO: "FUNDAÇÃO DE ASSISTÊNCIA SOCIAL E CIDADANIA "
+}
+],
+_links: {
+start: "/api/action/datastore_search?limit=5&resource_id=4e8e51da-6d35-4b8f-ad23-5dadae6cef69",
+next: "/api/action/datastore_search?offset=5&limit=5&resource_id=4e8e51da-6d35-4b8f-ad23-5dadae6cef69"
+},
+limit: 5,
+total: 13570
+}
+}
