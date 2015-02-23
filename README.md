@@ -4,6 +4,18 @@
 
 The DataPoa Client Library for Java is a flexible, efficient, and powerful Open Source Java client library for accessing Porto Alegre's open data.
 
+## About #DataPoa
+
+The #DataPoa is portal with open data from Porto Alegre, Brazil. It has the main goal to bring the community to use this data to create smart solutions for the city.
+
+### About Data
+
+This API has a lot of different kind of data like Mobility, Heath, Education and others.
+
+DataPoa Portal http://datapoa.com.br/
+
+DataPoa API http://datapoa.com.br/dataset
+
 ## Accessing API from Porto Alegre Open Data
 
 To access data from DataPoa API with this library you will need use DataPoaClient as below:
@@ -23,7 +35,7 @@ More details can be found on Unit Tests.
 
 ## Creating Customized Results
 
-To customize results this library is Flexible you can extend DataPoaEntity.class and implement your customized result. To use DataPoaClient use:
+We made this library to be flexible. Then you can extend DataPoaEntity.class and implement your customized result. Using DataPoaClient:
 
 ```
 
