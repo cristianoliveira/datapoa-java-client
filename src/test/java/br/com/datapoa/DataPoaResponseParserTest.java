@@ -1,23 +1,11 @@
 package br.com.datapoa;
 
-import java.io.File;
 import java.io.IOException;
-import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.text.DateFormat;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-
-import org.junit.Before;
 import org.junit.Test;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
-
 import br.com.datapoa.entities.DataPoaEntity;
-import br.com.datapoa.entities.DataPoaResult;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 

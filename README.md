@@ -8,18 +8,18 @@ To access data from DataPoa API with this library you will need use DataPoaClien
 
 ```
 
-        DataPoaResource dpResource = new DataPoaResourceQueryBuilder().resource(resourceId).build();
+    DataPoaResource dpResource = new DataPoaResourceQueryBuilder().resource(resourceId).build();
     	 
-        DataPoaEntity data = new DataPoaClient(dpResource).doRequest();
+    DataPoaEntity data = new DataPoaClient(dpResource).doRequest();
         
-        for (JsonObject jsonObject : data.getResult().getRecords()) {
-	        System.out.println(jsonObject.get("<COLUMN_NAME>"));
-        }
+    for (JsonObject record : data.getResult().getRecords()) {
+        System.out.println(record.get(0));
+    }
     	
 ```
 More details can be found on Unit Tests.
 
-## Creating Url Customized Results
+## Creating Customized Results
 
 To customize results this library is Flexible you can extend DataPoaEntity.class and implement your customized result. To use DataPoaClient use:
 
@@ -44,20 +44,20 @@ The easiest way to build this library is with Gradle but you can pick your own w
 
 ## Contributing
  
-- As User
+- **As User**
 
-1. Create New Features Issues
-2. Create Bug Issues
+   1. Create New Features Issues 
+   2. Create Bug Issues
 
-- As Developer
+- **As Developer**
  
-1. Fork it!
-2. Create your feature branch: `git checkout -b my-new-feature`
-3. Commit your changes: `git commit -am 'Add some feature'`
-4. Push to the branch: `git push origin my-new-feature`
-5. Submit a pull request
+   1. Fork it!
+   2. Create your feature branch: `git checkout -b my-new-feature`
+   3. Commit your changes: `git commit -am 'Add some feature'`
+   4. Push to the branch: `git push origin my-new-feature`
+   5. Submit a pull request
 
-** IMPORTANT: Pull requests must have Unit Tests.
+**IMPORTANT**: Pull requests must have Unit Tests.
  
 ## License
 This project is under MIT License.

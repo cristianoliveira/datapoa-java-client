@@ -19,6 +19,11 @@ public class DataPoaResourceQueryBuilder {
         return this;
     }
 
+    public DataPoaResourceQueryBuilder filter(String filter) {
+        dpResource.setFilter(filter);
+        return this;
+    }
+    
     public DataPoaResource build() {
         return dpResource;
     }

@@ -1,12 +1,12 @@
 package br.com.datapoa;
 
-import static org.junit.Assert.*;
+import junit.framework.TestCase;
 
 import org.junit.Test;
 
-public class DataPoaResourceQueryBuilderTest {
+public class DataPoaResourceQueryBuilderTest extends TestCase {
 
-    private String expectedAction = DataPoaUtil.getProvider().getDataSearchUrl();
+    private String expectedAction = DataPoaCommon.getProvider().getDataSearchUrl();
     private String expectedResourceId = "123";
     private Integer expectedLimit = 1;
     

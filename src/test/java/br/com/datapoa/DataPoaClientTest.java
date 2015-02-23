@@ -1,19 +1,17 @@
 package br.com.datapoa;
 
-import static org.junit.Assert.*;
-
 import java.io.IOException;
+
+import junit.framework.TestCase;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import com.google.gson.JsonObject;
-
 import br.com.datapoa.entities.DataPoaEntity;
 
 @RunWith(MockitoJUnitRunner.class)
-public class DataPoaClientTest {
+public class DataPoaClientTest extends TestCase{
 
 	String resourceId = "03b349a2-22bd-4de3-9df4-839c2c42d969";
 	Integer limit = 5;
@@ -41,7 +39,7 @@ public class DataPoaClientTest {
     }
     
     @Test
-    public void testGivenCustomizedClassResultWhenRequestItShouldReturnDataPoaEntity() throws IOException
+    public void testGivenCustomizedClassResultWhenRequestItShouldReturnCustomizedEntity() throws IOException
     {
         //given
     	DataPoaResourceQueryBuilder builder = new DataPoaResourceQueryBuilder().resource(resourceId);
@@ -60,6 +58,22 @@ public class DataPoaClientTest {
         assertNotNull(result.getResult().getFields());
         assertNotNull(result.getResult().getRecords());
         assertNotNull(result.getResult().getLinks());
+    }
+    
+    @Test
+    public void testGivenFilterResultWhenRequestItShouldReturnDataPoaEntity() throws IOException
+    {
+        //given
+        DataPoaResourceQueryBuilder builder = new DataPoaResourceQueryBuilder().resource(resourceId).filter("test filter");
+        DataPoaResource dpResource = builder.build();
+        DataPoaClient dpClient = new DataPoaClient(dpResource);
+        
+        // when
+        DataPoaEntity result = dpClient.doRequest();
+        
+        // then
+        assertNotNull(result);
+        assertNotNull(result.getResult());
     }
     
     @Test(expected = IOException.class)

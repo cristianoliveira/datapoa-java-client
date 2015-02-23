@@ -1,15 +1,15 @@
 package br.com.datapoa;
 
-import static org.junit.Assert.*;
-
 import java.io.IOException;
+
+import junit.framework.TestCase;
 
 import org.junit.Test;
 
 import br.com.datapoa.http.HttpResponse;
 import static org.mockito.Mockito.*;
 
-public class DataPoaResponseFactoryTest {
+public class DataPoaResponseFactoryTest extends TestCase {
 
     @Test
     public void testGivenValidHttpResponseWhenCreateResponseItShouldReturnValidDataPoaResponse() throws IOException {

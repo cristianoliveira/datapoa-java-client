@@ -13,15 +13,22 @@ public class DataPoaClient {
     }
 
     public DataPoaEntity doRequest() throws IOException {
-        DataPoaRequest request = new DataPoaRequest(dpResource);
-        DataPoaResponse dpResponse = request.request();
+        
+    	DataPoaResponse dpResponse = getResponse();
+        
         return new DataPoaResponseParser(dpResponse).parseTo(DataPoaEntity.class);
     }
 
     public <T> T doRequest(Class<T> clas) throws IOException {
-        DataPoaRequest request = new DataPoaRequest(dpResource);
-        DataPoaResponse dpResponse = request.request();
+        
+    	DataPoaResponse dpResponse = getResponse();
+    	
         return new DataPoaResponseParser(dpResponse).parseTo(clas);
+    }
+    
+    private DataPoaResponse getResponse() throws IOException
+    {
+        return new DataPoaRequest(dpResource).request();
     }
 
 }

@@ -1,6 +1,6 @@
 package br.com.datapoa;
 
-public class DataPoaUtil {
+public class DataPoaCommon {
 	
 	private static IDataProvider provider;
 	

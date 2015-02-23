@@ -7,10 +7,16 @@ class DataPoaResource {
 	private String action;
     private String resourceId;
     private Integer limit;
+    private String filter;
     
     DataPoaResource()
     {
-    	this.provider = DataPoaUtil.getProvider();
+    	this.provider = DataPoaCommon.getProvider();
+    }
+    
+    public void setProvider(IDataProvider provider)
+    {
+        this.provider = provider;
     }
 
     public String getAction() {
@@ -37,6 +43,14 @@ class DataPoaResource {
 
     public void setLimit(Integer limit) {
         this.limit = limit;
+    }
+
+    public String getFilter() {
+        return filter;
+    }
+
+    public void setFilter(String filter) {
+        this.filter = filter;
     }
 
 }
