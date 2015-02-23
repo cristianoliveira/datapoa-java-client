@@ -1,6 +1,8 @@
-# Datapoa Java Client Library
 
-The DataPoa Client Library for Java is a flexible, efficient, and powerful Open Source Java client library for accessing Porto Alegre's open data. 
+# Datapoa Java Client Library
+[![Build Status](https://travis-ci.org/CristianOliveiraDaRosa/datapoa-java-client.svg?branch=master)](https://travis-ci.org/CristianOliveiraDaRosa/datapoa-java-client)
+
+The DataPoa Client Library for Java is a flexible, efficient, and powerful Open Source Java client library for accessing Porto Alegre's open data.
 
 ## Accessing API from Porto Alegre Open Data
 
@@ -9,13 +11,13 @@ To access data from DataPoa API with this library you will need use DataPoaClien
 ```
 
     DataPoaResource dpResource = new DataPoaResourceQueryBuilder().resource(resourceId).build();
-    	 
+
     DataPoaEntity data = new DataPoaClient(dpResource).doRequest();
-        
+
     for (JsonObject record : data.getResult().getRecords()) {
         System.out.println(record.get(0));
     }
-    	
+
 ```
 More details can be found on Unit Tests.
 
@@ -32,7 +34,7 @@ More details can be found on Unit Tests.
 
 #Build and Run
 
-The easiest way to build this library is with Gradle but you can pick your own way to do it. 
+The easiest way to build this library is with Gradle but you can pick your own way to do it.
 
 ```
 
@@ -43,14 +45,14 @@ The easiest way to build this library is with Gradle but you can pick your own w
 ```
 
 ## Contributing
- 
+
 - **As User**
 
-   1. Create New Features Issues 
+   1. Create New Features Issues
    2. Create Bug Issues
 
 - **As Developer**
- 
+
    1. Fork it!
    2. Create your feature branch: `git checkout -b my-new-feature`
    3. Commit your changes: `git commit -am 'Add some feature'`
@@ -58,7 +60,7 @@ The easiest way to build this library is with Gradle but you can pick your own w
    5. Submit a pull request
 
 **IMPORTANT**: Pull requests must have Unit Tests.
- 
+
 ## License
 This project is under MIT License.
 
