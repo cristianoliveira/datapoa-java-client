@@ -11,6 +11,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 
 import br.com.datapoa.entities.DataEntity;
+import br.com.datapoa.request.DataRequest;
 import br.com.datapoa.request.DataRequestAsync;
 import br.com.datapoa.request.IDataRequestAsyncCallback;
 import br.com.datapoa.resources.DataResource;
@@ -26,9 +27,10 @@ public class DataRequestAsyncTest {
         //given 
         StubCallBack stubCallback = new StubCallBack();
         DataResource dpResource = new DataResourceBuilder().resource(resourceId).limit(limit).build();
+        DataRequest dRequest = new DataRequest(dpResource);
         
         // when
-        DataRequestAsync<DataEntity> asyncRequest = new DataRequestAsync<DataEntity>(DataEntity.class, dpResource, stubCallback);
+        DataRequestAsync<DataEntity> asyncRequest = new DataRequestAsync<DataEntity>(DataEntity.class, dRequest, stubCallback);
         asyncRequest.run();
         
         DataEntity result = stubCallback.expectedResult;

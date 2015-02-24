@@ -27,14 +27,51 @@ public class DataRequest {
      * @return DataResponse Data from webservice
      * @throws IOException when HttpClient does't has response
      */
-    public DataResponse request() throws IOException {
+    public DataResponse request() throws DataRequestException {
         
-        HttpParameterSet parameters = DataResourceParser.toHttpParameterSet(dpResource);
-        HttpResponse httpResponse = new HttpClient().request(HttpMethod.GET, dpResource.getAction(), parameters);
+    	HttpParameterSet parameters = getParameterSet();
+        
+    	HttpResponse httpResponse = getResponseFrom(parameters);
+    	
+    	return dataResponseFrom(httpResponse);
+    }
 
-        DataResponse dataResponse = DataResponseFactory.createFrom(httpResponse);
-        
-        return dataResponse;
+    private HttpParameterSet getParameterSet() throws DataRequestException
+    {
+    	HttpParameterSet parameters;
+    	try {
+    		parameters = DataResourceParser.toHttpParameterSet(dpResource);
+		} catch (IOException e) {
+			throw new DataRequestException(e, DataRequestException.WHEN_PARSING_RESOURCE);
+		}
+    	return parameters;
+    }
+    
+	private DataResponse dataResponseFrom(HttpResponse httpResponse) throws DataRequestException {
+		DataResponse dataResponse;
+    	try {
+    		dataResponse = DataResponseFactory.createFrom(httpResponse);
+		} catch (IOException e) {
+			throw new DataRequestException(e, DataRequestException.WHEN_PARSING_DATA);
+		}
+		return dataResponse;
+	}
+    
+    private HttpResponse getResponseFrom(HttpParameterSet parameters) throws DataRequestException
+    {
+    	HttpResponse httpResponse;
+    	try {
+    		httpResponse = getHttpClient().request(HttpMethod.GET, dpResource.getAction(), parameters);
+		} catch (IOException e) {
+			throw new DataRequestException(e, DataRequestException.WHEN_REQUESTING_DATA);
+		}
+    	
+    	return httpResponse;
+    }
+    
+    private HttpClient getHttpClient()
+    {
+    	return new HttpClient();
     }
     
 }

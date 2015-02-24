@@ -26,7 +26,7 @@ public class DataResourceParser {
         if (dpResource == null) 
               throw new IllegalArgumentException( "DataPoaResource must be informed.");
 
-        DataResourceUrlBuilder dataUrlBuilder = new DataResourceUrlBuilder();
+        DataResourceParameterSetBuilder dataUrlBuilder = new DataResourceParameterSetBuilder();
         
         if (dpResource.getResourceId()!= null)
         {

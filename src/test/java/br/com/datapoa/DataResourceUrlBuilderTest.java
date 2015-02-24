@@ -12,7 +12,7 @@ import org.junit.Test;
 import br.com.datapoa.http.HttpParameterSet;
 import br.com.datapoa.http.HttpParameterSetParser;
 import br.com.datapoa.resources.DataResourceParser;
-import br.com.datapoa.resources.DataResourceUrlBuilder;
+import br.com.datapoa.resources.DataResourceParameterSetBuilder;
 
 public class DataResourceUrlBuilderTest extends TestCase {
 
@@ -21,7 +21,7 @@ public class DataResourceUrlBuilderTest extends TestCase {
 
         // given
         String resource = "someResource123";
-        DataResourceUrlBuilder dataResourceUrlBuilder = new DataResourceUrlBuilder();
+        DataResourceParameterSetBuilder dataResourceUrlBuilder = new DataResourceParameterSetBuilder();
         dataResourceUrlBuilder.withResourceId(resource);
         
         // when
@@ -36,7 +36,7 @@ public class DataResourceUrlBuilderTest extends TestCase {
         // given
         String resource = "someResource123";
         String resultExpected = "?resource_id="+resource; 
-        DataResourceUrlBuilder dataResourceUrlBuilder = new DataResourceUrlBuilder();
+        DataResourceParameterSetBuilder dataResourceUrlBuilder = new DataResourceParameterSetBuilder();
         dataResourceUrlBuilder.withResourceId(resource);
         
         // when
@@ -54,7 +54,7 @@ public class DataResourceUrlBuilderTest extends TestCase {
         String resource = "someResource123";
         int limit = 10;
         String resultExpected = "?resource_id="+resource+"&limit="+limit; 
-        DataResourceUrlBuilder dataResourceUrlBuilder = new DataResourceUrlBuilder();
+        DataResourceParameterSetBuilder dataResourceUrlBuilder = new DataResourceParameterSetBuilder();
         dataResourceUrlBuilder.withResourceId(resource);
         dataResourceUrlBuilder.withLimit(limit);
         
@@ -74,7 +74,7 @@ public class DataResourceUrlBuilderTest extends TestCase {
         String filter = URLEncoder.encode("some", br.com.datapoa.http.HttpClient.CHARSET);
         String encodedParams  = "?resource_id="+resource+"&q="+filter;
         String resultExpected = encodedParams;
-        DataResourceUrlBuilder dataResourceUrlBuilder = new DataResourceUrlBuilder();
+        DataResourceParameterSetBuilder dataResourceUrlBuilder = new DataResourceParameterSetBuilder();
         dataResourceUrlBuilder.withResourceId(resource);
         dataResourceUrlBuilder.withFilter(filter);
         

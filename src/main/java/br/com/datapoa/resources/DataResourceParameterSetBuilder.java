@@ -9,26 +9,26 @@ import br.com.datapoa.http.HttpClient;
 import br.com.datapoa.http.HttpParameter;
 import br.com.datapoa.http.HttpParameterSet;
 
-public class DataResourceUrlBuilder {
+public class DataResourceParameterSetBuilder {
     
     private HttpParameterSet paramerBuilder;
     private final String PARAMETER_NAME_RESOURCE = "resource_id";
     private final String PARAMETER_NAME_FILTER = "q";
     private final String PARAMETER_NAME_LIMIT = "limit";
     
-    public DataResourceUrlBuilder withResourceId(String resourceId)
+    public DataResourceParameterSetBuilder withResourceId(String resourceId)
     {
-        getStringBuilder().add(new HttpParameter(PARAMETER_NAME_RESOURCE, resourceId));
+        getHttpParameterSet().add(new HttpParameter(PARAMETER_NAME_RESOURCE, resourceId));
         return this;
     }
     
-    public DataResourceUrlBuilder withLimit(Integer limit) throws UnsupportedEncodingException
+    public DataResourceParameterSetBuilder withLimit(Integer limit) throws UnsupportedEncodingException
     {
         add(PARAMETER_NAME_LIMIT, limit.toString());
         return this;
     }
     
-    public DataResourceUrlBuilder withFilter(String filter) throws UnsupportedEncodingException
+    public DataResourceParameterSetBuilder withFilter(String filter) throws UnsupportedEncodingException
     {
         add(PARAMETER_NAME_FILTER, filter);
         return this;
@@ -44,7 +44,7 @@ public class DataResourceUrlBuilder {
         this.paramerBuilder.add(new HttpParameter(name, value));
     }
     
-    private HttpParameterSet getStringBuilder()
+    private HttpParameterSet getHttpParameterSet()
     {
         if(this.paramerBuilder == null)
         {

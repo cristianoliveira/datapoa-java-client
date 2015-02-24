@@ -3,7 +3,6 @@ package br.com.datapoa.entities;
 import com.google.gson.JsonObject;
 
 public class Entity {
-	
 
     private String help;
     private boolean success;

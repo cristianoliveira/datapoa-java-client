@@ -60,6 +60,36 @@ To execute a request asynchronous you must to create a callback class implementi
 ```
 More details can be found on Unit Tests.
 
+## Getting Request Exceptions
+
+When an error occur during the request it will raise a DataRequestException with the point where error occured
+
+```
+     
+      try {
+    		parameters = DataResourceParser.toHttpParameterSet(dpResource);
+		} catch (DataRequestException e) {
+		   int point = e.getPointWhenErrorOccurred();
+			
+         switch (point) {
+		     case DataRequestException.WHEN_REQUESTING_DATA:
+		        ...
+			  break;
+			  case DataRequestException.WHEN_PARSING_DATA:
+			     ...
+			  break;
+			  case DataRequestException.WHEN_POSTING_DATA:
+			     ...
+			  break;
+
+			default:
+				break;
+			}
+		}
+
+```
+More details can be found on Unit Tests.
+
 ### How can I get Resource ID?
 
 Access DataPoa Portal and pick one data set. Enter in "Explorar"and "API Dados" in this page you'll be able to figure out the Resource Id. 

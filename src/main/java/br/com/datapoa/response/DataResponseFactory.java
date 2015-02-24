@@ -4,7 +4,7 @@ import java.io.IOException;
 
 import br.com.datapoa.http.HttpResponse;
 
-public class DataResponseFactory {
+public final class DataResponseFactory {
 
     /**
      * 

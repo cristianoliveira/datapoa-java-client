@@ -5,6 +5,7 @@ import java.io.IOException;
 import br.com.datapoa.entities.DataEntity;
 import br.com.datapoa.request.DataRequest;
 import br.com.datapoa.request.DataRequestAsync;
+import br.com.datapoa.request.DataRequestException;
 import br.com.datapoa.request.IDataRequestAsyncCallback;
 import br.com.datapoa.resources.DataResource;
 import br.com.datapoa.response.DataResponse;
@@ -31,11 +32,9 @@ public class DataClient {
      * @return DataEntity whit response from resource
      * @throws IOException when HttpClient doesn't response 
      */
-    public DataEntity doRequest() throws IOException {
+    public DataEntity doRequest() throws DataRequestException {
         
-    	DataResponse dpResponse = getResponse();
-        
-        return new DataResponseParser(dpResponse).parseTo(DataEntity.class);
+    	return resultAs(DataEntity.class);
     }
 
     /**
@@ -46,11 +45,8 @@ public class DataClient {
      * @return Class<T> formated data based on a Customized class
      * @throws IOException
      */
-    public <T> T doRequest(Class<T> clas) throws IOException {
-        
-    	DataResponse dpResponse = getResponse();
-    	
-        return new DataResponseParser(dpResponse).parseTo(clas);
+    public <T> T doRequest(Class<T> clas) throws DataRequestException {
+        return resultAs(clas);
     }
     
     /**
@@ -61,13 +57,23 @@ public class DataClient {
      * @param callback Implement of IDataRequestAsyncCallback to retrieve results. If it raise a error this exception will be hold on callback
      */
     public <T> void doAsyncRequest(Class<T> typeOf, IDataRequestAsyncCallback<T> callback) {
-        
-        new Thread(new DataRequestAsync<T>(typeOf, dpResource, callback)).start();
+        DataRequestAsync<T> dataRequest = new DataRequestAsync<T>(typeOf, getRequest(), callback);
+        new Thread(dataRequest).start();
     }
     
-    private DataResponse getResponse() throws IOException
+    private <T> T resultAs(Class<T> clas) throws DataRequestException
     {
-        return new DataRequest(dpResource).request();
+    	return new DataResponseParser(getResponse()).parseTo(clas);
+    }
+    
+    private DataResponse getResponse() throws DataRequestException
+    {
+        return getRequest().request();
+    }
+    
+    private DataRequest getRequest()
+    {
+    	return new DataRequest(dpResource);
     }
 
 }

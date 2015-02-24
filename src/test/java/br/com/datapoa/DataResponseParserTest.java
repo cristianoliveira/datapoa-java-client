@@ -1,6 +1,8 @@
 package br.com.datapoa;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
@@ -39,11 +41,13 @@ public class DataResponseParserTest {
     }
     
     @Test
-    public void testGivenRealJsonStringWhenParseItShouldReturnInstanceDataPoaEntity() throws IOException
+    public void testGivenRealJsonStringWhenParseItShouldReturnInstanceDataPoaEntity() throws IOException, URISyntaxException
     {
         // given
     	ClassLoader classLoader = getClass().getClassLoader();
-        byte[] bytes = Files.readAllBytes(Paths.get(classLoader.getResource("json/stub_result_from_datapoa.json").getPath()));
+    	String resourcePath = classLoader.getResource("json/stub_result_from_datapoa.json").getPath();
+    	URL url = new URL("file://"+resourcePath);
+        byte[] bytes = Files.readAllBytes(Paths.get(url.toURI()));
          
         String stubedJsonFromDataPoa = new String(bytes);
     	

@@ -9,12 +9,14 @@ import junit.framework.TestCase;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.runners.MockitoJUnitRunner;
+
 import static org.mockito.Mockito.*;
 
 import com.google.gson.Gson;
 
 import br.com.datapoa.entities.DataEntity;
 import br.com.datapoa.entities.DataPackages;
+import br.com.datapoa.request.DataRequestException;
 import br.com.datapoa.request.IDataRequestAsyncCallback;
 import br.com.datapoa.resources.DataResource;
 import br.com.datapoa.resources.DataResourceBuilder;
@@ -26,7 +28,7 @@ public class DataClientTest extends TestCase{
     Integer limit = 5;
 	
     @Test
-    public void testGivenRealResourceWhenRequestItShouldReturnDataEntity() throws IOException
+    public void testGivenRealResourceWhenRequestItShouldReturnDataEntity() throws DataRequestException
     {
         //given
     	DataResourceBuilder builder = new DataResourceBuilder().resource(resourceId);
@@ -46,7 +48,7 @@ public class DataClientTest extends TestCase{
     }
     
     @Test
-    public void testGivenRealResourceWhenRequesAsynctItShouldReturnDataEntityInCallback() throws IOException
+    public void testGivenRealResourceWhenRequesAsynctItShouldReturnDataEntityInCallback() throws DataRequestException
     {
         //given
         StubCallBack callback = mock(StubCallBack.class);
@@ -62,7 +64,7 @@ public class DataClientTest extends TestCase{
     }
     
     @Test
-    public void testGivenPackageActionItShouldReturnDataPackages() throws IOException
+    public void testGivenPackageActionItShouldReturnDataPackages() throws DataRequestException
     {
         //given
         String packageRequestAction = DataPoaCommon.getProvider().getPackageListAction();
@@ -82,7 +84,7 @@ public class DataClientTest extends TestCase{
     }
     
     @Test
-    public void testGivenGroupListActionItShouldReturnDataPackages() throws IOException
+    public void testGivenGroupListActionItShouldReturnDataPackages() throws DataRequestException
     {
         //given
         String groupListAction = DataPoaCommon.getProvider().getGroupListAction();
@@ -99,7 +101,7 @@ public class DataClientTest extends TestCase{
     }
     
     @Test
-    public void testGivenCustomizedClassResultWhenRequestItShouldReturnCustomizedEntity() throws IOException
+    public void testGivenCustomizedClassResultWhenRequestItShouldReturnCustomizedEntity() throws DataRequestException
     {
         //given
     	DataResourceBuilder builder = new DataResourceBuilder().resource(resourceId);
@@ -121,7 +123,7 @@ public class DataClientTest extends TestCase{
     }
     
     @Test
-    public void testGivenFilterResultWhenRequestItShouldReturnDataPoaEntity() throws IOException
+    public void testGivenFilterResultWhenRequestItShouldReturnDataPoaEntity() throws DataRequestException
     {
         //given
         DataResourceBuilder builder = new DataResourceBuilder().resource(resourceId).filter("test filter");

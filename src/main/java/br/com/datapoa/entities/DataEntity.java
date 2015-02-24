@@ -12,5 +12,5 @@ public class DataEntity extends Entity {
     public void setResult(DataResult result) {
         this.result = result;
     }
-
+    
 }

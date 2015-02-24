@@ -5,9 +5,9 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class HttpRequestFactory {
+public final class HttpRequestFactory {
 
-    public HttpRequest getRequest(HttpMethod method, String url, HttpParameterSet parameters) throws IOException {
+    public static HttpRequest getRequest(HttpMethod method, String url, HttpParameterSet parameters) throws IOException {
         HttpRequest request;
 
         if (method == HttpMethod.GET) {
@@ -19,14 +19,13 @@ public class HttpRequestFactory {
         return request;
     }
 
-    private HttpRequest requestGET(String url, HttpParameterSet parameters) throws IOException {
+    private static HttpRequest requestGET(String url, HttpParameterSet parameters) throws IOException {
         StringBuilder request = new StringBuilder(url);
         String paramaters = new HttpParameterSetParser(parameters).asString();
 
         request.append(paramaters);
 
-        HttpURLConnection httpConnection = getDefaultConnection(request
-                        .toString());
+        HttpURLConnection httpConnection = getDefaultConnection(request.toString());
 
         httpConnection.setRequestMethod(HttpMethod.GET.asString());
         httpConnection.setRequestProperty("Content-Length", String.valueOf(paramaters.getBytes()));
@@ -34,8 +33,7 @@ public class HttpRequestFactory {
         return new HttpRequest(httpConnection);
     }
 
-    private HttpRequest requestPOST(String url, HttpParameterSet parameters)
-                    throws IOException {
+    private static HttpRequest requestPOST(String url, HttpParameterSet parameters) throws IOException {
         String paramaters = new HttpParameterSetParser(parameters).asString();
 
         HttpURLConnection httpConnection = getDefaultConnection(url);
@@ -51,7 +49,7 @@ public class HttpRequestFactory {
         return new HttpRequest(httpConnection);
     }
 
-    private HttpURLConnection getDefaultConnection(String request) throws IOException {
+    private static HttpURLConnection getDefaultConnection(String request) throws IOException {
         URL urlRequest = new URL(request);
         HttpURLConnection httpConnection = (HttpURLConnection) urlRequest.openConnection();
         httpConnection.addRequestProperty("User-Agent", HttpClient.USERAGENT);
