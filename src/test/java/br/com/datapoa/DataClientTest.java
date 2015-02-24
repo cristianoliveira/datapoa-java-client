@@ -22,8 +22,8 @@ import br.com.datapoa.resources.DataResourceBuilder;
 @RunWith(MockitoJUnitRunner.class)
 public class DataClientTest extends TestCase{
 
-	String resourceId = "03b349a2-22bd-4de3-9df4-839c2c42d969";
-	Integer limit = 5;
+    String resourceId = "03b349a2-22bd-4de3-9df4-839c2c42d969";
+    Integer limit = 5;
 	
     @Test
     public void testGivenRealResourceWhenRequestItShouldReturnDataEntity() throws IOException
