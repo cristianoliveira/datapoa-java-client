@@ -62,7 +62,7 @@ More details can be found on Unit Tests.
 
 ## Getting Request Exceptions
 
-When an error occur during the request it will raise a DataRequestException with the point where error occured
+When an error occur during the request it will raise a DataRequestException with the point where error occurred
 
 ```
      
