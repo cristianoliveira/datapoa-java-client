@@ -22,9 +22,11 @@ To access data from DataPoa API with this library you will need use DataClient a
 
 ```
 
-    DataResource dpResource = new DataResourceBuilder().resource(resourceId).build();
-
-    DataEntity data = new DataClient(dpResource).doRequest();
+    DataResourceBuilder builder = new DataResourceBuilder().resource(resourceId);
+    DataResource dpResource = builder.build();
+    DataClient dpClient = new DataClient(dpResource);
+    
+    DataEntity data = new dpClient.doRequest();
 
     for (JsonObject record : data.getResult().getRecords()) {
         System.out.println(record.get(0));
@@ -35,7 +37,7 @@ Examples can be found on Unit Tests
 
 ## Creating Customized Results
 
-We made this library to be flexible. Then you can extend DataPoaEntity.class and implement your customized result. Using DataPoaClient:
+We made this library to be flexible. Then you can extend DataEntity.class and implement your customized result. Using DataClient:
 
 ```
 
@@ -43,6 +45,26 @@ We made this library to be flexible. Then you can extend DataPoaEntity.class and
 
 ```
 More details can be found on Unit Tests.
+
+## Executing Asynchronous Requests
+
+To execute a request asynchronous you must to create a callback class implementing IDataRequestAsyncCallback<MyEntity> interface and sending it to DataClient:
+
+```
+    
+    MyCallback callback = new MyCallback();
+    DataResourceBuilder builder = new DataResourceBuilder().resource(resourceId);
+    DataResource dpResource = builder.build();
+    
+    DataClient dpClient = new DataClient(dpResource);
+    dpClient.doAsyncRequest(DataEntity.class, callback);
+
+```
+More details can be found on Unit Tests.
+
+### How can I get Resource ID?
+
+Access DataPoa Portal and pick one data set. Enter in "Explorar"and "API Dados" in this page you'll be able to figure out the Resource Id. 
 
 #Build and Run
 

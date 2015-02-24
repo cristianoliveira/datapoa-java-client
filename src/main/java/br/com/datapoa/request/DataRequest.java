@@ -1,4 +1,4 @@
-package br.com.datapoa;
+package br.com.datapoa.request;
 
 import java.io.IOException;
 import java.net.URL;
@@ -36,5 +36,5 @@ public class DataRequest {
         
         return dataResponse;
     }
-
+    
 }

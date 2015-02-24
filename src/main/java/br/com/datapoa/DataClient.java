@@ -3,6 +3,9 @@ package br.com.datapoa;
 import java.io.IOException;
 
 import br.com.datapoa.entities.DataEntity;
+import br.com.datapoa.request.DataRequest;
+import br.com.datapoa.request.DataRequestAsync;
+import br.com.datapoa.request.IDataRequestAsyncCallback;
 import br.com.datapoa.resources.DataResource;
 import br.com.datapoa.response.DataResponse;
 import br.com.datapoa.response.DataResponseParser;
@@ -48,6 +51,18 @@ public class DataClient {
     	DataResponse dpResponse = getResponse();
     	
         return new DataResponseParser(dpResponse).parseTo(clas);
+    }
+    
+    /**
+     *  
+     *  Request data from resource in an Asynchronous way. It need a callback.
+     *  
+     * @param typeOf Type of Entity that will return in callback
+     * @param callback Implement of IDataRequestAsyncCallback to retrieve results. If it raise a error this exception will be hold on callback
+     */
+    public <T> void doAsyncRequest(Class<T> typeOf, IDataRequestAsyncCallback<T> callback) {
+        
+        new Thread(new DataRequestAsync<T>(typeOf, dpResource, callback)).start();
     }
     
     private DataResponse getResponse() throws IOException

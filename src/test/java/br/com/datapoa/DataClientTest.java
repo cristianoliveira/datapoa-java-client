@@ -1,17 +1,21 @@
 package br.com.datapoa;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import junit.framework.TestCase;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.runners.MockitoJUnitRunner;
+import static org.mockito.Mockito.*;
 
 import com.google.gson.Gson;
 
 import br.com.datapoa.entities.DataEntity;
 import br.com.datapoa.entities.DataPackages;
+import br.com.datapoa.request.IDataRequestAsyncCallback;
 import br.com.datapoa.resources.DataResource;
 import br.com.datapoa.resources.DataResourceBuilder;
 
@@ -39,6 +43,22 @@ public class DataClientTest extends TestCase{
         assertNotNull(result.getResult().getRecords());
         assertNotNull(result.getResult().getLinks());
        
+    }
+    
+    @Test
+    public void testGivenRealResourceWhenRequesAsynctItShouldReturnDataEntityInCallback() throws IOException
+    {
+        //given
+        StubCallBack callback = mock(StubCallBack.class);
+        DataResourceBuilder builder = new DataResourceBuilder().resource(resourceId);
+        DataResource dpResource = builder.build();
+        DataClient dpClient = new DataClient(dpResource);
+        
+        // when
+        dpClient.doAsyncRequest(DataEntity.class, callback);
+        
+        // then
+        verify(callback, timeout(5000)).onFinish();
     }
     
     @Test
@@ -136,6 +156,40 @@ public class DataClientTest extends TestCase{
     	{
     		return true;
     	}
+    }
+    
+    class StubCallBack implements IDataRequestAsyncCallback<DataEntity>{
+        
+        public List<String> progressMessages = new ArrayList<String>();
+        public DataEntity expectedResult;
+        public Exception exception;
+        public boolean finished;
+
+        @Override
+        public void postProgress(String progressMessage) {
+            progressMessages.add(progressMessage);
+        }
+
+        @Override
+        public void postResult(DataEntity response) {
+            expectedResult = response;
+        }
+
+        @Override
+        public void postError(Exception exception) {
+            this.exception = exception;
+        }
+        
+        public boolean resultIsSuccess()
+        {
+            return expectedResult.isSuccess();
+        }
+
+        @Override
+        public void onFinish() {
+            finished = true;
+        }
+    
     }
 
 }
