@@ -7,8 +7,8 @@ import java.nio.file.Paths;
 import org.junit.Test;
 
 import br.com.datapoa.entities.DataEntity;
-import br.com.datapoa.response.DataPoaResponse;
-import br.com.datapoa.response.DataPoaResponseParser;
+import br.com.datapoa.response.DataResponse;
+import br.com.datapoa.response.DataResponseParser;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
@@ -25,11 +25,11 @@ public class DataResponseParserTest {
         boolean expectedBolean = true;
         
         String jsonStringStubClient = "{ \"name\" : \""+expectedName+"\",  \"age\" : \""+expectedAge+"\", \"isCrazy\" : true }";
-        DataPoaResponse mockedResponse = mock(DataPoaResponse.class);
+        DataResponse mockedResponse = mock(DataResponse.class);
         when(mockedResponse.getJsonString()).thenReturn(jsonStringStubClient);
         
         // when
-        StubResultRequest result = new DataPoaResponseParser(mockedResponse).parseTo(StubResultRequest.class);
+        StubResultRequest result = new DataResponseParser(mockedResponse).parseTo(StubResultRequest.class);
         
         // then
         assertEquals(expectedName, result.getName());
@@ -47,11 +47,11 @@ public class DataResponseParserTest {
          
         String stubedJsonFromDataPoa = new String(bytes);
     	
-    	DataPoaResponse mockedResponse = mock(DataPoaResponse.class);
+    	DataResponse mockedResponse = mock(DataResponse.class);
         when(mockedResponse.getJsonString()).thenReturn(stubedJsonFromDataPoa);
         
         // when
-        DataEntity result = new DataPoaResponseParser(mockedResponse).parseTo(DataEntity.class);
+        DataEntity result = new DataResponseParser(mockedResponse).parseTo(DataEntity.class);
         
         // then
         assertNotNull(result);

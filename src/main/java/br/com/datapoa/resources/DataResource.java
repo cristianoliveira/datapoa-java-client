@@ -24,7 +24,7 @@ public class DataResource {
 
     public String getAction() {
         if (action == null)
-            return provider.getDataSearchUrl();
+            return provider.getDataSearchAction();
         return action;
     }
 

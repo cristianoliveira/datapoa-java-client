@@ -3,12 +3,16 @@ package br.com.datapoa;
 import java.io.IOException;
 
 import junit.framework.TestCase;
+import netscape.javascript.JSObject;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import com.google.gson.Gson;
+
 import br.com.datapoa.entities.DataEntity;
+import br.com.datapoa.entities.DataPackages;
 import br.com.datapoa.resources.DataResource;
 import br.com.datapoa.resources.DataResourceBuilder;
 
@@ -19,7 +23,7 @@ public class DataClientTest extends TestCase{
 	Integer limit = 5;
 	
     @Test
-    public void testGivenRealResourceWhenRequestItShouldReturnDataPoaEntity() throws IOException
+    public void testGivenRealResourceWhenRequestItShouldReturnDataEntity() throws IOException
     {
         //given
     	DataResourceBuilder builder = new DataResourceBuilder().resource(resourceId);
@@ -31,12 +35,47 @@ public class DataClientTest extends TestCase{
     	
     	// then
     	assertNotNull(result);
-    	assertEquals(true, result.isSuccess());
-        assertEquals(false, result.hasError());
         assertNotNull(result.getResult());
         assertNotNull(result.getResult().getFields());
         assertNotNull(result.getResult().getRecords());
         assertNotNull(result.getResult().getLinks());
+       
+    }
+    
+    @Test
+    public void testGivenPackageActionItShouldReturnDataPackages() throws IOException
+    {
+        //given
+        String packageRequestAction = DataPoaCommon.getProvider().getPackageListAction();
+        DataResourceBuilder builder = new DataResourceBuilder().action(packageRequestAction);
+        DataResource dpResource = builder.build();
+        DataClient dpClient = new DataClient(dpResource);
+        
+        // when
+        DataPackages result = dpClient.doRequest(DataPackages.class);
+        
+        // then
+        assertNotNull(result);
+        assertEquals(true, result.isSuccess());
+        assertEquals(false, result.hasError());
+        assertNotNull(result.getResult());
+       
+    }
+    
+    @Test
+    public void testGivenGroupListActionItShouldReturnDataPackages() throws IOException
+    {
+        //given
+        String groupListAction = DataPoaCommon.getProvider().getGroupListAction();
+        DataResourceBuilder builder = new DataResourceBuilder().action(groupListAction);
+        DataResource dpResource = builder.build();
+        DataClient dpClient = new DataClient(dpResource);
+        
+        // when
+        Gson result = dpClient.doRequest(Gson.class);
+        
+        // then
+        assertNotNull(result);
        
     }
     

@@ -2,6 +2,8 @@ package br.com.datapoa.http;
 
 import static org.junit.Assert.*;
 
+import java.io.UnsupportedEncodingException;
+
 import org.junit.Test;
 
 import br.com.datapoa.http.HttpParameter;
@@ -11,7 +13,7 @@ import br.com.datapoa.http.HttpParameterSetParser;
 public class HttpParameterSetParserTest {
     
     @Test
-    public void testGivenNullWhenParseItShouldReturnEmptyString() {
+    public void testGivenNullWhenParseItShouldReturnEmptyString() throws UnsupportedEncodingException {
         // given
         HttpParameterSetParser parser = new HttpParameterSetParser(null);
         String resultExpected = new String();
@@ -24,7 +26,7 @@ public class HttpParameterSetParserTest {
     }
     
     @Test
-    public void testGivenEmptyHttpParameterSetWhenParseItShouldReturnEmptyString()
+    public void testGivenEmptyHttpParameterSetWhenParseItShouldReturnEmptyString() throws UnsupportedEncodingException
     {
         // given
         HttpParameterSet parameters = HttpParameterSet.build();
@@ -39,7 +41,7 @@ public class HttpParameterSetParserTest {
     }
     
     @Test
-    public void testGivenOneHttpParameterSetWhenParseItShouldReturnString()
+    public void testGivenOneHttpParameterSetWhenParseItShouldReturnString() throws UnsupportedEncodingException
     {
         // given
         HttpParameterSet parameters = HttpParameterSet.build();
@@ -55,7 +57,7 @@ public class HttpParameterSetParserTest {
     }
     
     @Test
-    public void testGivenMoreThanOneHttpParameterSetWhenParseItShouldReturnString()
+    public void testGivenMoreThanOneHttpParameterSetWhenParseItShouldReturnString() throws UnsupportedEncodingException
     {
         // given
         HttpParameterSet parameters = HttpParameterSet.build();

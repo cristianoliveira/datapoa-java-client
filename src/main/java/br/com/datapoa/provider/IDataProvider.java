@@ -3,12 +3,12 @@ package br.com.datapoa.provider;
 public interface IDataProvider {
 
     public String getSiteUrl();
-    public String getDataSearchUrl();
-    public String getDataUpdateUrl();
-    public String getDataCreateUrl();
-    public String getDataSearchSqlUrl();
-    public String getPackageListUrl();
-    public String getGroupListUrl();
-    public String getPackageSearchUrl();
+    public String getDataSearchAction();
+    public String getDataUpdateAction();
+    public String getDataCreateAction();
+    public String getDataSearchSqlAction();
+    public String getPackageListAction();
+    public String getGroupListAction();
+    public String getPackageSearchAction();
     
 }

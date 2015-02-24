@@ -31,7 +31,7 @@ To access data from DataPoa API with this library you will need use DataClient a
     }
 
 ```
-More details can be found on Unit Tests.
+Examples can be found on Unit Tests
 
 ## Creating Customized Results
 

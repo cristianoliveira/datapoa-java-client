@@ -6,17 +6,20 @@ import java.net.URL;
 import java.net.URLEncoder;
 
 import br.com.datapoa.http.HttpClient;
+import br.com.datapoa.http.HttpParameter;
+import br.com.datapoa.http.HttpParameterSet;
 
 public class DataResourceUrlBuilder {
     
-    private StringBuilder urlBuilder;
+    private HttpParameterSet paramerBuilder;
     private final String PARAMETER_NAME_RESOURCE = "resource_id";
     private final String PARAMETER_NAME_FILTER = "q";
     private final String PARAMETER_NAME_LIMIT = "limit";
     
-    public DataResourceUrlBuilder(String action, String resourceId)
+    public DataResourceUrlBuilder withResourceId(String resourceId)
     {
-        getStringBuilder().append(action).append("?").append(PARAMETER_NAME_RESOURCE).append("=").append(resourceId);
+        getStringBuilder().add(new HttpParameter(PARAMETER_NAME_RESOURCE, resourceId));
+        return this;
     }
     
     public DataResourceUrlBuilder withLimit(Integer limit) throws UnsupportedEncodingException
@@ -31,24 +34,23 @@ public class DataResourceUrlBuilder {
         return this;
     }
     
-    public URL build() throws MalformedURLException
+    public HttpParameterSet build() throws MalformedURLException
     {
-        return new URL(getStringBuilder().toString());
+        return paramerBuilder;
     }
     
     private void add(String name, String value) throws UnsupportedEncodingException
     {
-        String encoded = URLEncoder.encode(value, HttpClient.CHARSET);
-        getStringBuilder().append("&").append(name).append("=").append(encoded);
+        this.paramerBuilder.add(new HttpParameter(name, value));
     }
     
-    private StringBuilder getStringBuilder()
+    private HttpParameterSet getStringBuilder()
     {
-        if(this.urlBuilder == null)
+        if(this.paramerBuilder == null)
         {
-            this.urlBuilder = new StringBuilder();
+            this.paramerBuilder = new HttpParameterSet();
         }
-        return urlBuilder;
+        return paramerBuilder;
     }
 
 }

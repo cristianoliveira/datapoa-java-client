@@ -7,8 +7,8 @@ import junit.framework.TestCase;
 import org.junit.Test;
 
 import br.com.datapoa.http.HttpResponse;
-import br.com.datapoa.response.DataPoaResponse;
-import br.com.datapoa.response.DataPoaResponseFactory;
+import br.com.datapoa.response.DataResponse;
+import br.com.datapoa.response.DataResponseFactory;
 import static org.mockito.Mockito.*;
 
 public class DataResponseFactoryTest extends TestCase {
@@ -21,7 +21,7 @@ public class DataResponseFactoryTest extends TestCase {
         when(mockedResponse.asString()).thenReturn(resultExpected);
         
         // when
-        DataPoaResponse response = new DataPoaResponseFactory().createFrom(mockedResponse);
+        DataResponse response = new DataResponseFactory().createFrom(mockedResponse);
         
         // then
         assertEquals(resultExpected, response.getJsonString());
@@ -30,11 +30,11 @@ public class DataResponseFactoryTest extends TestCase {
     @Test
     public void testGivenNullHttpResponseWhenCreateResponseItShouldReturnNull() throws IOException {
         // given
-        DataPoaResponse resultExpected = null;
+        DataResponse resultExpected = null;
         HttpResponse invalidHttpResponse = null;
         
         // when
-        DataPoaResponse result = new DataPoaResponseFactory().createFrom(invalidHttpResponse);
+        DataResponse result = new DataResponseFactory().createFrom(invalidHttpResponse);
         
         // then
         assertEquals(resultExpected, result);

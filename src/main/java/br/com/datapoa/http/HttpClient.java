@@ -16,8 +16,8 @@ public class HttpClient {
         return request(method, url, null);
     }
 
-    public HttpResponse request(HttpMethod method, String url,
-        HttpParameterSet httpParameters) throws IOException {
+    public HttpResponse request(HttpMethod method, String url, HttpParameterSet httpParameters) throws IOException {
+        
         HttpRequest request = new HttpRequestFactory().getRequest(method, url, httpParameters);
 
         return request.doRequest();

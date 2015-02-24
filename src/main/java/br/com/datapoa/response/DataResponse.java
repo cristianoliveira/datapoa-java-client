@@ -1,6 +1,6 @@
 package br.com.datapoa.response;
 
-public class DataPoaResponse {
+public class DataResponse {
 
     private String jsonString;
 
@@ -10,7 +10,7 @@ public class DataPoaResponse {
      * package
      * 
      */
-    DataPoaResponse() {
+    DataResponse() {
     }
 
     public void setJsonString(String json) {

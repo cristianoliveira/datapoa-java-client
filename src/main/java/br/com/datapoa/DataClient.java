@@ -4,8 +4,8 @@ import java.io.IOException;
 
 import br.com.datapoa.entities.DataEntity;
 import br.com.datapoa.resources.DataResource;
-import br.com.datapoa.response.DataPoaResponse;
-import br.com.datapoa.response.DataPoaResponseParser;
+import br.com.datapoa.response.DataResponse;
+import br.com.datapoa.response.DataResponseParser;
 
 public class DataClient {
 
@@ -15,7 +15,7 @@ public class DataClient {
      * 
      *  Create a data client with resource.
      * 
-     * @param DataResource dpResource 
+     * @param DataResource resource to be requested data 
      */
     public DataClient(DataResource dpResource) {
         this.dpResource = dpResource;
@@ -25,32 +25,32 @@ public class DataClient {
      * 
      *  Request data from resource
      * 
-     * @return DataEntity 
-     * @throws IOException
+     * @return DataEntity whit response from resource
+     * @throws IOException when HttpClient doesn't response 
      */
     public DataEntity doRequest() throws IOException {
         
-    	DataPoaResponse dpResponse = getResponse();
+    	DataResponse dpResponse = getResponse();
         
-        return new DataPoaResponseParser(dpResponse).parseTo(DataEntity.class);
+        return new DataResponseParser(dpResponse).parseTo(DataEntity.class);
     }
 
     /**
      * 
      *  Request data from resource and return Customized Class
      * 
-     * @param Class<T> clas  Class extendend from Entity.class to receive data
-     * @return Class<T> Data formated at new class
+     * @param Class<T> Class extended from Entity.class to format and receive data
+     * @return Class<T> formated data based on a Customized class
      * @throws IOException
      */
     public <T> T doRequest(Class<T> clas) throws IOException {
         
-    	DataPoaResponse dpResponse = getResponse();
+    	DataResponse dpResponse = getResponse();
     	
-        return new DataPoaResponseParser(dpResponse).parseTo(clas);
+        return new DataResponseParser(dpResponse).parseTo(clas);
     }
     
-    private DataPoaResponse getResponse() throws IOException
+    private DataResponse getResponse() throws IOException
     {
         return new DataRequest(dpResource).request();
     }

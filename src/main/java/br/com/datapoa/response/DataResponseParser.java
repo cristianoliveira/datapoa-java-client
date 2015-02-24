@@ -2,11 +2,11 @@ package br.com.datapoa.response;
 
 import com.google.gson.GsonBuilder;
 
-public class DataPoaResponseParser {
+public class DataResponseParser {
 
-    private DataPoaResponse dpResponse;
+    private DataResponse dpResponse;
 
-    public DataPoaResponseParser(DataPoaResponse dpResponse) {
+    public DataResponseParser(DataResponse dpResponse) {
         this.dpResponse = dpResponse;
     }
 

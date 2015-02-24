@@ -9,7 +9,7 @@ import br.com.datapoa.resources.DataResourceBuilder;
 
 public class DataResourceBuilderTest extends TestCase {
 
-    private String expectedAction = DataPoaCommon.getProvider().getDataSearchUrl();
+    private String expectedAction = DataPoaCommon.getProvider().getDataSearchAction();
     private String expectedResourceId = "123";
     private Integer expectedLimit = 1;
     
