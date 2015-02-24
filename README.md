@@ -67,7 +67,8 @@ When an error occur during the request it will raise a DataRequestException with
 ```
      
       try {
-    		parameters = DataResourceParser.toHttpParameterSet(dpResource);
+    		data = new DataClient(dpResource).doRequest();
+    		
 		} catch (DataRequestException e) {
 		   int point = e.getPointWhenErrorOccurred();
 			
