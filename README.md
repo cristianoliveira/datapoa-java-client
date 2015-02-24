@@ -24,9 +24,8 @@ To access data from DataPoa API with this library you will need use DataClient a
 
     DataResourceBuilder builder = new DataResourceBuilder().resource(resourceId);
     DataResource dpResource = builder.build();
-    DataClient dpClient = new DataClient(dpResource);
     
-    DataEntity data = new dpClient.doRequest();
+    DataEntity data = new DataClient(dpResource).doRequest();
 
     for (JsonObject record : data.getResult().getRecords()) {
         System.out.println(record.get(0));
@@ -56,8 +55,7 @@ To execute a request asynchronous you must to create a callback class implementi
     DataResourceBuilder builder = new DataResourceBuilder().resource(resourceId);
     DataResource dpResource = builder.build();
     
-    DataClient dpClient = new DataClient(dpResource);
-    dpClient.doAsyncRequest(DataEntity.class, callback);
+    new DataClient(dpResource).doAsyncRequest(DataEntity.class, callback);
 
 ```
 More details can be found on Unit Tests.
