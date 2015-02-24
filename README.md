@@ -6,7 +6,7 @@ The DataPoa Client Library for Java is a flexible, efficient, and powerful Open 
 
 ## About #DataPoa
 
-The #DataPoa is portal with open data from Porto Alegre, Brazil. It has the main goal to bring the community to use this data to create smart solutions for the city.
+The #DataPoa is a portal with open data from Porto Alegre, Brazil. It has the main goal to bring the community to use this data to create smart solutions for the city.
 
 ### About Data
 
@@ -18,13 +18,13 @@ DataPoa API http://datapoa.com.br/dataset
 
 ## Accessing API from Porto Alegre Open Data
 
-To access data from DataPoa API with this library you will need use DataPoaClient as below:
+To access data from DataPoa API with this library you will need use DataClient as below:
 
 ```
 
-    DataPoaResource dpResource = new DataPoaResourceQueryBuilder().resource(resourceId).build();
+    DataResource dpResource = new DataResourceBuilder().resource(resourceId).build();
 
-    DataPoaEntity data = new DataPoaClient(dpResource).doRequest();
+    DataEntity data = new DataClient(dpResource).doRequest();
 
     for (JsonObject record : data.getResult().getRecords()) {
         System.out.println(record.get(0));
@@ -39,7 +39,7 @@ We made this library to be flexible. Then you can extend DataPoaEntity.class and
 
 ```
 
-    CustomizedResultEntity result = new DataPoaClient(dpResource).doRequest(CustomizedResultEntity.class);
+    CustomizedResultEntity result = new DataClient(dpResource).doRequest(CustomizedResultEntity.class);
 
 ```
 More details can be found on Unit Tests.
