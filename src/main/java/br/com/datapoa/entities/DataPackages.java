@@ -2,7 +2,7 @@ package br.com.datapoa.entities;
 
 import java.util.List;
 
-public class DataPoaPackages extends Entity{
+public class DataPackages extends Entity{
     
     private List<String> result;
 

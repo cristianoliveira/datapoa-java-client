@@ -1,4 +1,4 @@
-package br.com.datapoa;
+package br.com.datapoa.response;
 
 public class DataPoaResponse {
 

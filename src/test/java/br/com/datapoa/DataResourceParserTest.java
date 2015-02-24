@@ -11,15 +11,19 @@ import junit.framework.TestCase;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import br.com.datapoa.resources.DataResource;
+import br.com.datapoa.resources.DataResourceParser;
+import br.com.datapoa.resources.DataResourceBuilder;
+
 @RunWith(MockitoJUnitRunner.class)
-public class DataPoaResourceParserTest extends TestCase {
+public class DataResourceParserTest extends TestCase {
 
     @Test
     public void testGivenStupResourceWhenParseItShouldReturnFormattedURL() throws MalformedURLException, UnsupportedEncodingException {
         // given
         String stubResourceId = "123";
         Integer limit = 1;
-        DataPoaResource dpResource = new DataPoaResourceQueryBuilder()
+        DataResource dpResource = new DataResourceBuilder()
                                             .resource(stubResourceId)
                                             .limit(limit)
                                             .build();
@@ -29,7 +33,7 @@ public class DataPoaResourceParserTest extends TestCase {
                                                  .toString();
 
         // when
-        URL resourceURL = DataPoaResourceParser.toUrl(dpResource);
+        URL resourceURL = DataResourceParser.toUrl(dpResource);
 
         // then
         assertNotNull(resourceURL);
@@ -42,7 +46,7 @@ public class DataPoaResourceParserTest extends TestCase {
         String stubResourceId = "123";
         Integer limit = 1;
         String actionExpected = DataPoaCommon.getProvider().getPackageListUrl();
-        DataPoaResource dpResource = new DataPoaResourceQueryBuilder().action(actionExpected)
+        DataResource dpResource = new DataResourceBuilder().action(actionExpected)
                                             .resource(stubResourceId)
                                             .limit(limit)
                                             .build();
@@ -52,7 +56,7 @@ public class DataPoaResourceParserTest extends TestCase {
                                                  .toString();
 
         // when
-        URL resourceURL = DataPoaResourceParser.toUrl(dpResource);
+        URL resourceURL = DataResourceParser.toUrl(dpResource);
 
         // then
         assertNotNull(resourceURL);
@@ -67,7 +71,7 @@ public class DataPoaResourceParserTest extends TestCase {
         String expectedFilter = "Teste";
         
         String actionExpected = DataPoaCommon.getProvider().getPackageListUrl();
-        DataPoaResource dpResource = new DataPoaResourceQueryBuilder().action(actionExpected)
+        DataResource dpResource = new DataResourceBuilder().action(actionExpected)
                                             .resource(stubResourceId)
                                             .limit(expectedLimit)
                                             .filter(expectedFilter)
@@ -79,7 +83,7 @@ public class DataPoaResourceParserTest extends TestCase {
                                                  .toString();
 
         // when
-        URL resourceURL = DataPoaResourceParser.toUrl(dpResource);
+        URL resourceURL = DataResourceParser.toUrl(dpResource);
 
         // then
         assertNotNull(resourceURL);
@@ -94,7 +98,7 @@ public class DataPoaResourceParserTest extends TestCase {
         String expectedFilter = "Test with spaces";
         
         String actionExpected = DataPoaCommon.getProvider().getPackageListUrl();
-        DataPoaResource dpResource = new DataPoaResourceQueryBuilder().action(actionExpected)
+        DataResource dpResource = new DataResourceBuilder().action(actionExpected)
                                             .resource(stubResourceId)
                                             .limit(expectedLimit)
                                             .filter(expectedFilter)
@@ -106,7 +110,7 @@ public class DataPoaResourceParserTest extends TestCase {
                                                  .toString();
 
         // when
-        URL resourceURL = DataPoaResourceParser.toUrl(dpResource);
+        URL resourceURL = DataResourceParser.toUrl(dpResource);
 
         // then
         assertNotNull(resourceURL);
@@ -118,12 +122,12 @@ public class DataPoaResourceParserTest extends TestCase {
         // given
         String stubResourceId = "";
         Integer limit = 1;
-        DataPoaResource dpResource = new DataPoaResourceQueryBuilder().resource(stubResourceId)
+        DataResource dpResource = new DataResourceBuilder().resource(stubResourceId)
                                                                       .limit(limit)
                                                                       .build();
 
         // when
-        DataPoaResourceParser.toUrl(dpResource);
+        DataResourceParser.toUrl(dpResource);
 
         // then    raise IllegalArgumentException
     }
@@ -131,10 +135,10 @@ public class DataPoaResourceParserTest extends TestCase {
     @Test(expected = IllegalArgumentException.class)
     public void testGivenNullResourceWhenParseItShouldRaiseException() throws MalformedURLException, UnsupportedEncodingException {
         // given
-        DataPoaResource dpResource = null;
+        DataResource dpResource = null;
 
         // when
-        DataPoaResourceParser.toUrl(dpResource);
+        DataResourceParser.toUrl(dpResource);
 
         // then    raise IllegalArgumentException
     }

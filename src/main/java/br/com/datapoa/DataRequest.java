@@ -1,24 +1,28 @@
 package br.com.datapoa;
 
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
 
 import br.com.datapoa.http.HttpClient;
 import br.com.datapoa.http.HttpMethod;
 import br.com.datapoa.http.HttpResponse;
+import br.com.datapoa.resources.DataResource;
+import br.com.datapoa.resources.DataResourceParser;
+import br.com.datapoa.response.DataPoaResponse;
+import br.com.datapoa.response.DataPoaResponseFactory;
 
-public class DataPoaRequest {
+public class DataRequest {
 
-    private DataPoaResource dpResource;
+    private DataResource dpResource;
 
-    public DataPoaRequest(DataPoaResource dpResource) {
+    public DataRequest(DataResource dpResource) {
         this.dpResource = dpResource;
     }
 
     public DataPoaResponse request() throws IOException {
+        
         HttpClient httpCliente = new HttpClient();
-        URL resourceURL = DataPoaResourceParser.toUrl(dpResource);
+        URL resourceURL = DataResourceParser.toUrl(dpResource);
         HttpResponse httpResponse = httpCliente.request(HttpMethod.GET, resourceURL);
 
         return new DataPoaResponseFactory().createFrom(httpResponse);

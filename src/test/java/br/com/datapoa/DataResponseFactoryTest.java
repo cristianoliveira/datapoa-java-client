@@ -7,9 +7,11 @@ import junit.framework.TestCase;
 import org.junit.Test;
 
 import br.com.datapoa.http.HttpResponse;
+import br.com.datapoa.response.DataPoaResponse;
+import br.com.datapoa.response.DataPoaResponseFactory;
 import static org.mockito.Mockito.*;
 
-public class DataPoaResponseFactoryTest extends TestCase {
+public class DataResponseFactoryTest extends TestCase {
 
     @Test
     public void testGivenValidHttpResponseWhenCreateResponseItShouldReturnValidDataPoaResponse() throws IOException {

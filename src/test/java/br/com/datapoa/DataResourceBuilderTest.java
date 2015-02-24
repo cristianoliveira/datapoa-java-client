@@ -4,7 +4,10 @@ import junit.framework.TestCase;
 
 import org.junit.Test;
 
-public class DataPoaResourceQueryBuilderTest extends TestCase {
+import br.com.datapoa.resources.DataResource;
+import br.com.datapoa.resources.DataResourceBuilder;
+
+public class DataResourceBuilderTest extends TestCase {
 
     private String expectedAction = DataPoaCommon.getProvider().getDataSearchUrl();
     private String expectedResourceId = "123";
@@ -13,13 +16,13 @@ public class DataPoaResourceQueryBuilderTest extends TestCase {
     @Test
     public void testGiveResourceIdAndLimitWhenBuildItShouldReturnDataPoaResource() {
         // given 
-        DataPoaResourceQueryBuilder builder = new DataPoaResourceQueryBuilder()
+        DataResourceBuilder builder = new DataResourceBuilder()
                                                     .resource(expectedResourceId)
                                                     .limit(expectedLimit)
                                                     .action(expectedAction);
         
         // when
-        DataPoaResource dpResource = builder.build();
+        DataResource dpResource = builder.build();
         
                                     // then
         assertEquals(expectedAction, dpResource.getAction());
@@ -30,10 +33,10 @@ public class DataPoaResourceQueryBuilderTest extends TestCase {
     @Test
     public void testGivenOnlyResourceIdWhenBuildItShouldReturnDataPoaResourceWithoutLimit() {
         // given 
-        DataPoaResourceQueryBuilder builder = new DataPoaResourceQueryBuilder().resource(expectedResourceId);
+        DataResourceBuilder builder = new DataResourceBuilder().resource(expectedResourceId);
         
         // when
-        DataPoaResource dpResource = builder.build();
+        DataResource dpResource = builder.build();
                                     
         // then
         assertTrue(dpResource.getLimit() == null);

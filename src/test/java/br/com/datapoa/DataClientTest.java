@@ -8,10 +8,12 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import br.com.datapoa.entities.DataPoaEntity;
+import br.com.datapoa.entities.DataEntity;
+import br.com.datapoa.resources.DataResource;
+import br.com.datapoa.resources.DataResourceBuilder;
 
 @RunWith(MockitoJUnitRunner.class)
-public class DataPoaClientTest extends TestCase{
+public class DataClientTest extends TestCase{
 
 	String resourceId = "03b349a2-22bd-4de3-9df4-839c2c42d969";
 	Integer limit = 5;
@@ -20,12 +22,12 @@ public class DataPoaClientTest extends TestCase{
     public void testGivenRealResourceWhenRequestItShouldReturnDataPoaEntity() throws IOException
     {
         //given
-    	DataPoaResourceQueryBuilder builder = new DataPoaResourceQueryBuilder().resource(resourceId);
-    	DataPoaResource dpResource = builder.build();
-    	DataPoaClient dpClient = new DataPoaClient(dpResource);
+    	DataResourceBuilder builder = new DataResourceBuilder().resource(resourceId);
+    	DataResource dpResource = builder.build();
+    	DataClient dpClient = new DataClient(dpResource);
     	
         // when
-    	DataPoaEntity result = dpClient.doRequest();
+    	DataEntity result = dpClient.doRequest();
     	
     	// then
     	assertNotNull(result);
@@ -42,9 +44,9 @@ public class DataPoaClientTest extends TestCase{
     public void testGivenCustomizedClassResultWhenRequestItShouldReturnCustomizedEntity() throws IOException
     {
         //given
-    	DataPoaResourceQueryBuilder builder = new DataPoaResourceQueryBuilder().resource(resourceId);
-    	DataPoaResource dpResource = builder.build();
-    	DataPoaClient dpClient = new DataPoaClient(dpResource);
+    	DataResourceBuilder builder = new DataResourceBuilder().resource(resourceId);
+    	DataResource dpResource = builder.build();
+    	DataClient dpClient = new DataClient(dpResource);
     	
         // when
     	StubCustomizedResultEntity result = dpClient.doRequest(StubCustomizedResultEntity.class);
@@ -64,12 +66,12 @@ public class DataPoaClientTest extends TestCase{
     public void testGivenFilterResultWhenRequestItShouldReturnDataPoaEntity() throws IOException
     {
         //given
-        DataPoaResourceQueryBuilder builder = new DataPoaResourceQueryBuilder().resource(resourceId).filter("test filter");
-        DataPoaResource dpResource = builder.build();
-        DataPoaClient dpClient = new DataPoaClient(dpResource);
+        DataResourceBuilder builder = new DataResourceBuilder().resource(resourceId).filter("test filter");
+        DataResource dpResource = builder.build();
+        DataClient dpClient = new DataClient(dpResource);
         
         // when
-        DataPoaEntity result = dpClient.doRequest();
+        DataEntity result = dpClient.doRequest();
         
         // then
         assertNotNull(result);
@@ -80,9 +82,9 @@ public class DataPoaClientTest extends TestCase{
     public void testGivenInvalidRealResourceWhenRequestItShouldRaiseError() throws IOException
     {
         //given
-    	DataPoaResourceQueryBuilder builder = new DataPoaResourceQueryBuilder().resource("INVALIDRESOURCE");
-    	DataPoaResource dpResource = builder.build();
-    	DataPoaClient dpClient = new DataPoaClient(dpResource);
+    	DataResourceBuilder builder = new DataResourceBuilder().resource("INVALIDRESOURCE");
+    	DataResource dpResource = builder.build();
+    	DataClient dpClient = new DataClient(dpResource);
     	
         // when
     	dpClient.doRequest();
@@ -90,7 +92,7 @@ public class DataPoaClientTest extends TestCase{
     	// then raise IOException 
     }
     
-    class StubCustomizedResultEntity extends DataPoaEntity{
+    class StubCustomizedResultEntity extends DataEntity{
     	
     	public boolean isCustomized()
     	{

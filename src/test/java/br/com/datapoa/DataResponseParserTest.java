@@ -3,13 +3,16 @@ package br.com.datapoa;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+
 import org.junit.Test;
 
-import br.com.datapoa.entities.DataPoaEntity;
+import br.com.datapoa.entities.DataEntity;
+import br.com.datapoa.response.DataPoaResponse;
+import br.com.datapoa.response.DataPoaResponseParser;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
-public class DataPoaResponseParserTest {
+public class DataResponseParserTest {
     
     String stubedJsonFromDataPoa;
     
@@ -48,7 +51,7 @@ public class DataPoaResponseParserTest {
         when(mockedResponse.getJsonString()).thenReturn(stubedJsonFromDataPoa);
         
         // when
-        DataPoaEntity result = new DataPoaResponseParser(mockedResponse).parseTo(DataPoaEntity.class);
+        DataEntity result = new DataPoaResponseParser(mockedResponse).parseTo(DataEntity.class);
         
         // then
         assertNotNull(result);

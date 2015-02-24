@@ -1,5 +1,8 @@
 package br.com.datapoa;
 
+import br.com.datapoa.provider.DataPoaProvider;
+import br.com.datapoa.provider.IDataProvider;
+
 public class DataPoaCommon {
     
     private static IDataProvider provider;

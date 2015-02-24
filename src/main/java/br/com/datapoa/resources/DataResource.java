@@ -1,6 +1,9 @@
-package br.com.datapoa;
+package br.com.datapoa.resources;
 
-class DataPoaResource {
+import br.com.datapoa.DataPoaCommon;
+import br.com.datapoa.provider.IDataProvider;
+
+public class DataResource {
 
     private IDataProvider provider;
 	
@@ -9,7 +12,7 @@ class DataPoaResource {
     private Integer limit;
     private String filter;
     
-    DataPoaResource()
+    DataResource()
     {
     	this.provider = DataPoaCommon.getProvider();
     }

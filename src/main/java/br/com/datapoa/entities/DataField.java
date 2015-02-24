@@ -1,6 +1,6 @@
 package br.com.datapoa.entities;
 
-public class DataPoaField {
+public class DataField {
 
     private String type;
     private String id;

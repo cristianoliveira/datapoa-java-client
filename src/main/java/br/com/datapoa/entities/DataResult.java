@@ -7,11 +7,11 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.annotations.SerializedName;
 
-public class DataPoaResult {
+public class DataResult {
 
 	@SerializedName("resource_id")
     private String resourceId;
-    private List<DataPoaField> fields;
+    private List<DataField> fields;
     private List<JsonObject> records;
     @SerializedName("_links")
     private JsonObject links;
@@ -26,11 +26,11 @@ public class DataPoaResult {
         this.resourceId = resourceId;
     }
 
-    public List<DataPoaField> getFields() {
+    public List<DataField> getFields() {
         return fields;
     }
 
-    public void setFields(List<DataPoaField> fields) {
+    public void setFields(List<DataField> fields) {
         this.fields = fields;
     }
 

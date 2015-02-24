@@ -1,4 +1,4 @@
-package br.com.datapoa;
+package br.com.datapoa.provider;
 
 public class DataPoaProvider extends DataProvider {
 
