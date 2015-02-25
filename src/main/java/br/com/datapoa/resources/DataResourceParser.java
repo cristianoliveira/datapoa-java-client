@@ -15,7 +15,7 @@ public class DataResourceParser {
      * 
      *  Create HttpParameterSet from a resource
      * 
-     * @param DataResource Resource to be parsed
+     * @param dpResource DataResource Resource to be parsed
      * @return HttpParameterSet Parameters to execute a HttpRequest
      * @throws IllegalArgumentException when resource is null
      * @throws MalformedURLException when resource has wrong values

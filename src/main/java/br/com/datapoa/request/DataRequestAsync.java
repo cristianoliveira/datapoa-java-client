@@ -1,19 +1,9 @@
 package br.com.datapoa.request;
 
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.net.MalformedURLException;
-
 import com.google.gson.JsonSyntaxException;
 
-import br.com.datapoa.http.HttpClient;
-import br.com.datapoa.http.HttpMethod;
-import br.com.datapoa.http.HttpParameterSet;
-import br.com.datapoa.http.HttpResponse;
-import br.com.datapoa.resources.DataResource;
-import br.com.datapoa.resources.DataResourceParser;
 import br.com.datapoa.response.DataResponse;
-import br.com.datapoa.response.DataResponseFactory;
 import br.com.datapoa.response.DataResponseParser;
 
 public final class DataRequestAsync<T> implements Runnable {

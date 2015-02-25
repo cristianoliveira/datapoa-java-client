@@ -7,10 +7,13 @@
  * user guide available at http://gradle.org/docs/2.2.1/userguide/tutorial_java_projects.html
  */
 apply plugin: 'java'
+apply plugin: 'maven'
+apply plugin: 'signing'
 
 // Variables
-version = "1.0.1"
-
+group = "br.com.datapoa"
+archivesBaseName = "datapoa-java-client"
+version = "1.0.2"
 
 // In this section you declare where to find the dependencies of your project
 repositories {
@@ -37,3 +40,66 @@ dependencies {
     testCompile "org.mockito:mockito-core:1.+"
 
 }
+
+task javadocJar(type: Jar) {
+    classifier = 'javadoc'
+    from javadoc
+}
+
+task sourcesJar(type: Jar) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+artifacts {
+    archives javadocJar, sourcesJar
+}
+
+signing {
+    sign configurations.archives
+}
+
+uploadArchives {
+    repositories {
+      mavenDeployer {
+        beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+  
+        repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+          authentication(userName: ossrhUsername, password: ossrhPassword)
+        }
+  
+        snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
+          authentication(userName: ossrhUsername, password: ossrhPassword)
+        }
+  
+        pom.project {
+          name 'DataPoa Java Client'
+          packaging 'jar'
+          // optionally artifactId can be defined here
+          description 'The DataPoa Client Library for Java is a flexible, efficient, and powerful Open Source Java client library for accessing Porto Alegres open data.'
+          url 'https://github.com/DataPoa/datapoa-java-client'
+  
+          scm {
+            connection 'https://github.com/DataPoa/datapoa-java-client.git'
+            developerConnection 'https://github.com/DataPoa/datapoa-java-client.git'
+            url 'https://github.com/DataPoa/datapoa-java-client'
+          }
+  
+          licenses {
+            license {
+              name 'MIT'
+              url 'http://opensource.org/licenses/MIT'
+            }
+          }
+  
+          developers {
+            developer {
+              id 'CristianOliveiraDaRosa'
+              name 'Cristian Oliveira da Rosa'
+              email 'contato@cristianoliveira.com.br'
+            }
+          }
+        }
+      }
+    }
+  }

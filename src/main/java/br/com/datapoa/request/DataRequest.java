@@ -25,7 +25,7 @@ public class DataRequest {
      *  Execute a request with resource parameters
      * 
      * @return DataResponse Data from webservice
-     * @throws IOException when HttpClient does't has response
+     * @throws DataRequestException when HttpClient does't has response
      */
     public DataResponse request() throws DataRequestException {
         

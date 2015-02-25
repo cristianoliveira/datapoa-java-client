@@ -12,7 +12,7 @@ public final class DataResponseFactory {
      * 
      * @param httpRespose HttpResponse result of a HttpRequest
      * @return DataResponse with json from HttpResponse, null when HttpResponse null
-     * @throws IOException
+     * @throws IOException when try to parse HttpResponse to String
      */
     public static DataResponse createFrom(HttpResponse httpRespose) throws IOException {
         if (httpRespose == null)
