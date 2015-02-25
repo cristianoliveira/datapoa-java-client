@@ -56,7 +56,9 @@ artifacts {
 }
 
 signing {
-    sign configurations.archives
+    signing.keyId=System.getenv('SIGN_KEY_ID')
+    signing.password=System.getenv('SIGN_KEY_PASSWORD')
+    signing.secretKeyRingFile=~/.gnupg/secring.gpg
 }
 
 uploadArchives {
