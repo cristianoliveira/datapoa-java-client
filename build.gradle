@@ -55,10 +55,11 @@ artifacts {
     archives javadocJar, sourcesJar
 }
 
+/*
 signing {
     signing.keyId=System.getenv('SIGN_KEY_ID')
     signing.password=System.getenv('SIGN_KEY_PASSWORD')
-    signing.secretKeyRingFile=~/.gnupg/secring.gpg
+    signing.secretKeyRingFile="~/.gnupg/secring.gpg"
 }
 
 uploadArchives {
@@ -105,3 +106,6 @@ uploadArchives {
       }
     }
   }
+*/
+
+
