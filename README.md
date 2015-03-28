@@ -72,11 +72,11 @@ When an error occur during the request it will raise a DataRequestException with
         int point = e.getPointWhenErrorOccurred();
 
         switch (point) {
-	    case DataRequestException.WHEN_REQUESTING_DATA:
+            case DataRequestException.WHEN_REQUESTING_DATA:
                 ...
                 break;
-	    case DataRequestException.WHEN_PARSING_DATA:
-    	        ...
+            case DataRequestException.WHEN_PARSING_DATA:
+                ...
                 break;
             case DataRequestException.WHEN_POSTING_DATA:
                 ...
