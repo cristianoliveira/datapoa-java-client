@@ -73,16 +73,16 @@ When an error occur during the request it will raise a DataRequestException with
 
         switch (point) {
 	    case DataRequestException.WHEN_REQUESTING_DATA:
-	        ...
+                ...
                 break;
 	    case DataRequestException.WHEN_PARSING_DATA:
     	        ...
-	        break;
+                break;
             case DataRequestException.WHEN_POSTING_DATA:
                 ...
                 break;
             default:
-	        break;
+                break;
         }
     }
 
