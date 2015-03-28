@@ -20,7 +20,7 @@ DataPoa API http://datapoa.com.br/dataset
 
 To access data from DataPoa API with this library you will need use DataClient as below:
 
-```
+```java
 
     DataResourceBuilder builder = new DataResourceBuilder().resource(resourceId);
     DataResource dpResource = builder.build();
@@ -38,9 +38,10 @@ Examples can be found on Unit Tests
 
 We made this library to be flexible. Then you can extend DataEntity.class and implement your customized result. Using DataClient:
 
-```
-
-    CustomizedResultEntity result = new DataClient(dpResource).doRequest(CustomizedResultEntity.class);
+```java
+ 
+    DataClient client = new DataClient(dpResource);
+    CustomizedResultEntity result = client.doRequest(CustomizedResultEntity.class);
 
 ```
 More details can be found on Unit Tests.
@@ -49,7 +50,7 @@ More details can be found on Unit Tests.
 
 To execute a request asynchronous you must to create a callback class implementing IDataRequestAsyncCallback<MyEntity> interface and sending it to DataClient:
 
-```
+```java
     
     MyCallback callback = new MyCallback();
     DataResourceBuilder builder = new DataResourceBuilder().resource(resourceId);
@@ -64,29 +65,26 @@ More details can be found on Unit Tests.
 
 When an error occur during the request it will raise a DataRequestException with the point where error occurred
 
-```
-     
-      try {
-    		data = new DataClient(dpResource).doRequest();
-    		
-		} catch (DataRequestException e) {
-		   int point = e.getPointWhenErrorOccurred();
-			
-         switch (point) {
-		     case DataRequestException.WHEN_REQUESTING_DATA:
-		        ...
-			  break;
-			  case DataRequestException.WHEN_PARSING_DATA:
-			     ...
-			  break;
-			  case DataRequestException.WHEN_POSTING_DATA:
-			     ...
-			  break;
+```java
+    try {
+        data = new DataClient(dpResource).doRequest();
+    } catch (DataRequestException e) {
+        int point = e.getPointWhenErrorOccurred();
 
-			default:
-				break;
-			}
-		}
+        switch (point) {
+	    case DataRequestException.WHEN_REQUESTING_DATA:
+	        ...
+                break;
+	    case DataRequestException.WHEN_PARSING_DATA:
+    	        ...
+	        break;
+            case DataRequestException.WHEN_POSTING_DATA:
+                ...
+                break;
+            default:
+	        break;
+        }
+    }
 
 ```
 More details can be found on Unit Tests.
@@ -99,8 +97,7 @@ Access DataPoa Portal and pick one data set. Enter in "Explorar"and "API Dados" 
 
 The easiest way to build this library is with Gradle but you can pick your own way to do it.
 
-```
-
+```bash
      $ git clone https://github.com/DataPoa/datapoa-java-client.git
      $ cd datapoa-java-client
      $ gradle build
