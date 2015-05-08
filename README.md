@@ -16,6 +16,24 @@ DataPoa Portal http://datapoa.com.br/
 
 DataPoa API http://datapoa.com.br/dataset
 
+## Instalation
+
+Add this library as dependency with Gradle or Maven:
+
+### Gradle
+```
+  compile 'br.com.datapoa:datapoa-java-client:1.+'
+```
+
+### Maven
+```xml
+<dependency>
+    <groupId>br.com.datapoa</groupId>
+    <artifactId>datapoa-java-client</artifactId>
+    <version>1.0.2</version>
+</dependency>
+```
+
 ## Accessing API from Porto Alegre Open Data
 
 To access data from DataPoa API with this library you will need use DataClient as below:
