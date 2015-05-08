@@ -37,7 +37,7 @@ dependencies {
     // testCompile dependency to testCompile 'org.testng:testng:6.8.1' and add
     // 'test.useTestNG()' to your build script.
     testCompile "junit:junit:4.11"
-    testCompile "org.mockito:mockito-core:1.15"
+    testCompile "org.mockito:mockito-core:1.+"
 
 }
 
@@ -59,6 +59,7 @@ signing {
     sign configurations.archives
 }
 
+/*
 uploadArchives {
     repositories {
       mavenDeployer {
@@ -103,5 +104,5 @@ uploadArchives {
       }
     }
   }
-
+*/
 
