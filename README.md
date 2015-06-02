@@ -1,6 +1,6 @@
 
 # Datapoa Java Client Library
-[![Build Status](https://travis-ci.org/CristianOliveiraDaRosa/datapoa-java-client.svg?branch=master)](https://travis-ci.org/CristianOliveiraDaRosa/datapoa-java-client)
+[![Build Status](https://travis-ci.org/CristianOliveiraDaRosa/datapoa-java-client.svg?branch=master)](https://travis-ci.org/CristianOliveiraDaRosa/datapoa-java-client) [![Maven Central](https://maven-badges.herokuapp.com/maven-central/br.com.datapoa/datapoa-java-client/badge.svg)](https://maven-badges.herokuapp.com/maven-central/br.com.datapoa/datapoa-java-client)
 
 The DataPoa Client Library for Java is a flexible, efficient, and powerful Open Source Java client library for accessing Porto Alegre's open data.
 
