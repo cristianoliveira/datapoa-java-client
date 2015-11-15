@@ -18,7 +18,8 @@ import br.com.datapoa.http.HttpResponse;
 @RunWith(MockitoJUnitRunner.class)
 public class HttpClientTest {
     
-    final String GITHUB_README = "https://raw.githubusercontent.com/DataPoa/datapoa-java-client/master/README.md";
+    final String GITHUB_README =
+            "https://raw.githubusercontent.com/cristianoliveira/datapoa-java-client/master/README.md";
 
     @Test
     public void testGivenOnlyUrlWhenGetRequestItShouldReturnHttpResponse() throws IOException 
