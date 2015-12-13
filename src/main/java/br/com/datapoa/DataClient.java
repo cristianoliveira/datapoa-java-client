@@ -33,7 +33,6 @@ public class DataClient {
      *             when HttpClient doesn't response
      */
     public DataEntity doRequest() throws DataRequestException {
-
         return resultAs(DataEntity.class);
     }
 
@@ -41,7 +40,7 @@ public class DataClient {
      *
      * Request data from resource and return Customized Class
      *
-     * @param clas
+     * @param clazz
      *            Class T extended from Entity.class to format and receive data
      * @param <T>
      *            Type of class that you want to return the request
@@ -49,8 +48,8 @@ public class DataClient {
      * @throws DataRequestException
      *             when http client doesn`t respond
      */
-    public <T> T doRequest(Class<T> clas) throws DataRequestException {
-        return resultAs(clas);
+    public <T> T doRequest(Class<T> clazz) throws DataRequestException {
+        return resultAs(clazz);
     }
 
     /**
@@ -72,8 +71,8 @@ public class DataClient {
         new Thread(dataRequest).start();
     }
 
-    private <T> T resultAs(Class<T> clas) throws DataRequestException {
-        return new DataResponseParser(getResponse()).parseTo(clas);
+    private <T> T resultAs(Class<T> clazz) throws DataRequestException {
+        return new DataResponseParser(getResponse()).parseTo(clazz);
     }
 
     private DataResponse getResponse() throws DataRequestException {
