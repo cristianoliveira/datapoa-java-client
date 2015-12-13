@@ -25,8 +25,7 @@ public class DataRequest {
      * Execute a request with resource parameters
      * 
      * @return DataResponse Data from webservice
-     * @throws DataRequestException
-     *             when HttpClient does't has response
+     * @throws DataRequestException when HttpClient does't has response
      */
     public DataResponse request() throws DataRequestException {
 
@@ -42,33 +41,28 @@ public class DataRequest {
         try {
             parameters = DataResourceParser.toHttpParameterSet(dpResource);
         } catch (IOException e) {
-            throw new DataRequestException(e,
-                    DataRequestException.WHEN_PARSING_RESOURCE);
+            throw new DataRequestException(e, DataRequestException.WHEN_PARSING_RESOURCE);
         }
         return parameters;
     }
 
-    private DataResponse dataResponseFrom(HttpResponse httpResponse)
-            throws DataRequestException {
+    private DataResponse dataResponseFrom(HttpResponse httpResponse) throws DataRequestException {
         DataResponse dataResponse;
         try {
             dataResponse = DataResponseFactory.createFrom(httpResponse);
         } catch (IOException e) {
-            throw new DataRequestException(e,
-                    DataRequestException.WHEN_PARSING_DATA);
+            throw new DataRequestException(e, DataRequestException.WHEN_PARSING_DATA);
         }
         return dataResponse;
     }
 
-    private HttpResponse getResponseFrom(HttpParameterSet parameters)
-            throws DataRequestException {
+    private HttpResponse getResponseFrom(HttpParameterSet parameters) throws DataRequestException {
         HttpResponse httpResponse;
         try {
-            httpResponse = getHttpClient().request(HttpMethod.GET,
-                    dpResource.getAction(), parameters);
+            httpResponse =
+                    getHttpClient().request(HttpMethod.GET, dpResource.getAction(), parameters);
         } catch (IOException e) {
-            throw new DataRequestException(e,
-                    DataRequestException.WHEN_REQUESTING_DATA);
+            throw new DataRequestException(e, DataRequestException.WHEN_REQUESTING_DATA);
         }
 
         return httpResponse;

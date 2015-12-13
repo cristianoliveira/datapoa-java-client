@@ -28,8 +28,7 @@ public final class DataRequestAsync<T> implements Runnable {
             try {
                 response = dpRequest.request();
             } catch (IOException e) {
-                throw new DataRequestException(e,
-                        DataRequestException.WHEN_REQUESTING_DATA);
+                throw new DataRequestException(e, DataRequestException.WHEN_REQUESTING_DATA);
             }
 
             callback.postProgress("Parsing...");
@@ -37,16 +36,14 @@ public final class DataRequestAsync<T> implements Runnable {
             try {
                 result = new DataResponseParser(response).parseTo(typeOf);
             } catch (JsonSyntaxException e) {
-                throw new DataRequestException(e,
-                        DataRequestException.WHEN_PARSING_DATA);
+                throw new DataRequestException(e, DataRequestException.WHEN_PARSING_DATA);
             }
 
             callback.postProgress("Posting...");
             try {
                 callback.postResult(result);
             } catch (Exception e) {
-                throw new DataRequestException(e,
-                        DataRequestException.WHEN_POSTING_DATA);
+                throw new DataRequestException(e, DataRequestException.WHEN_POSTING_DATA);
             }
 
             callback.onFinish();

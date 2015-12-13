@@ -6,12 +6,10 @@ public class DataResponse {
 
     /**
      * 
-     * This object hold result of request to be parse. It can't be called out of
-     * package
+     * This object hold result of request to be parse. It can't be called out of package
      * 
      */
-    DataResponse() {
-    }
+    DataResponse() {}
 
     public void setJsonString(String json) {
         this.jsonString = json;

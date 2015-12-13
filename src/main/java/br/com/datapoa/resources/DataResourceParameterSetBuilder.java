@@ -17,8 +17,7 @@ public class DataResourceParameterSetBuilder {
     private final String PARAMETER_NAME_LIMIT = "limit";
 
     public DataResourceParameterSetBuilder withResourceId(String resourceId) {
-        getHttpParameterSet().add(
-                new HttpParameter(PARAMETER_NAME_RESOURCE, resourceId));
+        getHttpParameterSet().add(new HttpParameter(PARAMETER_NAME_RESOURCE, resourceId));
         return this;
     }
 
@@ -38,8 +37,7 @@ public class DataResourceParameterSetBuilder {
         return paramerBuilder;
     }
 
-    private void add(String name, String value)
-            throws UnsupportedEncodingException {
+    private void add(String name, String value) throws UnsupportedEncodingException {
         this.paramerBuilder.add(new HttpParameter(name, value));
     }
 

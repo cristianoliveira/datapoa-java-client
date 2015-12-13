@@ -22,8 +22,7 @@ public class HttpRequest {
 
         } catch (FileNotFoundException fileNotFoundException) {
 
-            throw new IOException("Provider return error: "
-                    + httpConnection.getResponseCode());
+            throw new IOException("Provider return error: " + httpConnection.getResponseCode());
         }
     }
 

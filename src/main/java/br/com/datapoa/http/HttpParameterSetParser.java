@@ -12,7 +12,7 @@ public class HttpParameterSetParser {
     }
 
     public String asString() throws UnsupportedEncodingException {
-        
+
         if (this.parameters == null || this.parameters.toList().isEmpty())
             return new String();
 
@@ -27,7 +27,7 @@ public class HttpParameterSetParser {
 
         return withoutLastCharacter(par);
     }
-    
+
     private String encode(String value) throws UnsupportedEncodingException {
         return URLEncoder.encode(value, HttpClient.CHARSET);
     }

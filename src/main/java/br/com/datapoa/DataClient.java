@@ -17,8 +17,7 @@ public class DataClient {
      * 
      * Create a data client with resource.
      * 
-     * @param dpResource
-     *            DataResource resource to be requested data
+     * @param dpResource DataResource resource to be requested data
      */
     public DataClient(DataResource dpResource) {
         this.dpResource = dpResource;
@@ -29,8 +28,7 @@ public class DataClient {
      * Request data from resource
      * 
      * @return DataEntity whit response from resource
-     * @throws DataRequestException
-     *             when HttpClient doesn't response
+     * @throws DataRequestException when HttpClient doesn't response
      */
     public DataEntity doRequest() throws DataRequestException {
         return resultAs(DataEntity.class);
@@ -40,13 +38,10 @@ public class DataClient {
      *
      * Request data from resource and return Customized Class
      *
-     * @param clazz
-     *            Class T extended from Entity.class to format and receive data
-     * @param <T>
-     *            Type of class that you want to return the request
+     * @param clazz Class T extended from Entity.class to format and receive data
+     * @param <T> Type of class that you want to return the request
      * @return T Class formated data based on a Customized class
-     * @throws DataRequestException
-     *             when http client doesn`t respond
+     * @throws DataRequestException when http client doesn`t respond
      */
     public <T> T doRequest(Class<T> clazz) throws DataRequestException {
         return resultAs(clazz);
@@ -56,18 +51,13 @@ public class DataClient {
      *
      * Request data from resource in an Asynchronous way. It need a callback.
      *
-     * @param typeOf
-     *            Type of Entity that will return in callback
-     * @param <T>
-     *            typeOf Type of Entity that will return in callback
-     * @param callback
-     *            Implement of IDataRequestAsyncCallback to retrieve results. If
-     *            it raise a error this exception will be hold on callback
+     * @param typeOf Type of Entity that will return in callback
+     * @param <T> typeOf Type of Entity that will return in callback
+     * @param callback Implement of IDataRequestAsyncCallback to retrieve results. If it raise a
+     *        error this exception will be hold on callback
      */
-    public <T> void doAsyncRequest(Class<T> typeOf,
-            IDataRequestAsyncCallback<T> callback) {
-        DataRequestAsync<T> dataRequest = new DataRequestAsync<T>(typeOf,
-                getRequest(), callback);
+    public <T> void doAsyncRequest(Class<T> typeOf, IDataRequestAsyncCallback<T> callback) {
+        DataRequestAsync<T> dataRequest = new DataRequestAsync<T>(typeOf, getRequest(), callback);
         new Thread(dataRequest).start();
     }
 
