@@ -21,27 +21,29 @@ public class DataRequestAsyncTest {
 
     String resourceId = "03b349a2-22bd-4de3-9df4-839c2c42d969";
     Integer limit = 5;
-    
+
     @Test
     public void testGivenResourceItShoulToRequestAndReturnInRequestCallback() {
-        //given 
+        // given
         StubCallBack stubCallback = new StubCallBack();
-        DataResource dpResource = new DataResourceBuilder().resource(resourceId).limit(limit).build();
-        DataRequest dRequest = new DataRequest(dpResource);
-        
+        DataResource dataResource =
+                new DataResourceBuilder().resource(resourceId).limit(limit).build();
+        DataRequest dRequest = new DataRequest(dataResource);
+
         // when
-        DataRequestAsync<DataEntity> asyncRequest = new DataRequestAsync<DataEntity>(DataEntity.class, dRequest, stubCallback);
+        DataRequestAsync<DataEntity> asyncRequest =
+                new DataRequestAsync<DataEntity>(DataEntity.class, dRequest, stubCallback);
         asyncRequest.run();
-        
+
         DataEntity result = stubCallback.expectedResult;
-        
+
         // then
         assertNotNull(result);
         assertNotNull(result.getHelp());
     }
 
-    class StubCallBack implements IDataRequestAsyncCallback<DataEntity>{
-        
+    class StubCallBack implements IDataRequestAsyncCallback<DataEntity> {
+
         public List<String> progressMessages = new ArrayList<String>();
         public DataEntity expectedResult;
         public Exception exception;
@@ -66,7 +68,7 @@ public class DataRequestAsyncTest {
         public void onFinish() {
             isFinished = true;
         }
-    
+
     }
 
 }

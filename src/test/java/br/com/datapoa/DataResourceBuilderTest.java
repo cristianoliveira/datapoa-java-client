@@ -12,34 +12,33 @@ public class DataResourceBuilderTest extends TestCase {
     private String expectedAction = DataPoaCommon.getProvider().getDataSearchAction();
     private String expectedResourceId = "123";
     private Integer expectedLimit = 1;
-    
+
     @Test
     public void testGiveResourceIdAndLimitWhenBuildItShouldReturnDataPoaResource() {
-        // given 
-        DataResourceBuilder builder = new DataResourceBuilder()
-                                                    .resource(expectedResourceId)
-                                                    .limit(expectedLimit)
-                                                    .action(expectedAction);
-        
+        // given
+        DataResourceBuilder builder =
+                new DataResourceBuilder().resource(expectedResourceId).limit(expectedLimit)
+                        .action(expectedAction);
+
         // when
-        DataResource dpResource = builder.build();
-        
-                                    // then
-        assertEquals(expectedAction, dpResource.getAction());
-        assertEquals(expectedResourceId, dpResource.getResourceId());
-        assertEquals(expectedLimit, dpResource.getLimit());
+        DataResource dataResource = builder.build();
+
+        // then
+        assertEquals(expectedAction, dataResource.getAction());
+        assertEquals(expectedResourceId, dataResource.getResourceId());
+        assertEquals(expectedLimit, dataResource.getLimit());
     }
-    
+
     @Test
     public void testGivenOnlyResourceIdWhenBuildItShouldReturnDataPoaResourceWithoutLimit() {
-        // given 
+        // given
         DataResourceBuilder builder = new DataResourceBuilder().resource(expectedResourceId);
-        
+
         // when
-        DataResource dpResource = builder.build();
-                                    
+        DataResource dataResource = builder.build();
+
         // then
-        assertTrue(dpResource.getLimit() == null);
+        assertNull(dataResource.getLimit());
     }
 
 }

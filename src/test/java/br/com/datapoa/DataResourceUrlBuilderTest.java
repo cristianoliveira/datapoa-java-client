@@ -17,70 +17,78 @@ import br.com.datapoa.resources.DataResourceParameterSetBuilder;
 public class DataResourceUrlBuilderTest extends TestCase {
 
     @Test
-    public void testGivenActionAndResourceItShouldReturnAnHttpParameterSetClass() throws MalformedURLException {
+    public void testGivenActionAndResourceItShouldReturnAnHttpParameterSetClass()
+            throws MalformedURLException {
 
         // given
         String resource = "someResource123";
-        DataResourceParameterSetBuilder dataResourceUrlBuilder = new DataResourceParameterSetBuilder();
+        DataResourceParameterSetBuilder dataResourceUrlBuilder =
+                new DataResourceParameterSetBuilder();
         dataResourceUrlBuilder.withResourceId(resource);
-        
+
         // when
         HttpParameterSet result = dataResourceUrlBuilder.build();
 
         // then
         assertNotNull(result);
     }
-    
+
     @Test
-    public void testGivenActionAndResourceIdItShouldBuildUrlOnlyWithResourceParameter() throws MalformedURLException, UnsupportedEncodingException {
+    public void testGivenActionAndResourceIdItShouldBuildUrlOnlyWithResourceParameter()
+            throws MalformedURLException, UnsupportedEncodingException {
         // given
         String resource = "someResource123";
-        String resultExpected = "?resource_id="+resource; 
-        DataResourceParameterSetBuilder dataResourceUrlBuilder = new DataResourceParameterSetBuilder();
+        String resultExpected = "?resource_id=" + resource;
+        DataResourceParameterSetBuilder dataResourceUrlBuilder =
+                new DataResourceParameterSetBuilder();
         dataResourceUrlBuilder.withResourceId(resource);
-        
+
         // when
         HttpParameterSet parameters = dataResourceUrlBuilder.build();
-        String result =  new HttpParameterSetParser(parameters).asString();
-        
+        String result = new HttpParameterSetParser(parameters).asString();
+
 
         // then
         assertEquals(resultExpected, result);
     }
 
     @Test
-    public void testGivenLimitItShouldReturnUrlWithResourceAndLimit() throws MalformedURLException, UnsupportedEncodingException {
+    public void testGivenLimitItShouldReturnUrlWithResourceAndLimit() throws MalformedURLException,
+            UnsupportedEncodingException {
         // given
         String resource = "someResource123";
         int limit = 10;
-        String resultExpected = "?resource_id="+resource+"&limit="+limit; 
-        DataResourceParameterSetBuilder dataResourceUrlBuilder = new DataResourceParameterSetBuilder();
+        String resultExpected = "?resource_id=" + resource + "&limit=" + limit;
+        DataResourceParameterSetBuilder dataResourceUrlBuilder =
+                new DataResourceParameterSetBuilder();
         dataResourceUrlBuilder.withResourceId(resource);
         dataResourceUrlBuilder.withLimit(limit);
-        
+
         // when
         HttpParameterSet parameters = dataResourceUrlBuilder.build();
-        String result =  new HttpParameterSetParser(parameters).asString();
-        
+        String result = new HttpParameterSetParser(parameters).asString();
+
 
         // then
         assertEquals(resultExpected, result);
     }
 
     @Test
-    public void testGivenFilterItShouldReturnUrlWithResourceAndFilter() throws MalformedURLException, UnsupportedEncodingException {
+    public void testGivenFilterItShouldReturnUrlWithResourceAndFilter()
+            throws MalformedURLException, UnsupportedEncodingException {
         // given
         String resource = "someResource123";
         String filter = URLEncoder.encode("some", br.com.datapoa.http.HttpClient.CHARSET);
-        String encodedParams  = "?resource_id="+resource+"&q="+filter;
+        String encodedParams = "?resource_id=" + resource + "&q=" + filter;
         String resultExpected = encodedParams;
-        DataResourceParameterSetBuilder dataResourceUrlBuilder = new DataResourceParameterSetBuilder();
+        DataResourceParameterSetBuilder dataResourceUrlBuilder =
+                new DataResourceParameterSetBuilder();
         dataResourceUrlBuilder.withResourceId(resource);
         dataResourceUrlBuilder.withFilter(filter);
-        
+
         // when
         HttpParameterSet parameters = dataResourceUrlBuilder.build();
-        String result =  new HttpParameterSetParser(parameters).asString();
+        String result = new HttpParameterSetParser(parameters).asString();
 
         // then
         assertEquals(resultExpected, result);

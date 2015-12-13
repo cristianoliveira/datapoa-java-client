@@ -23,99 +23,91 @@ import br.com.datapoa.resources.DataResourceBuilder;
 public class DataResourceParserTest extends TestCase {
 
     @Test
-    public void testGivenStupResourceWhenParseItShouldReturnFormattedURL() throws MalformedURLException, UnsupportedEncodingException {
+    public void testGivenStupResourceWhenParseItShouldReturnFormattedURL()
+            throws MalformedURLException, UnsupportedEncodingException {
         // given
         String stubResourceId = "123";
         Integer limit = 1;
-        DataResource dpResource = new DataResourceBuilder()
-                                            .resource(stubResourceId)
-                                            .limit(limit)
-                                            .build();
-        String resultExpected = new StringBuilder()
-                                                 .append("?resource_id=").append(stubResourceId)
-                                                 .append("&limit=").append(limit)
-                                                 .toString();
+        DataResource dpResource =
+                new DataResourceBuilder().resource(stubResourceId).limit(limit).build();
+        String resultExpected =
+                new StringBuilder().append("?resource_id=").append(stubResourceId)
+                        .append("&limit=").append(limit).toString();
 
         // when
         HttpParameterSet resourceURL = DataResourceParser.toHttpParameterSet(dpResource);
-        String result =  new HttpParameterSetParser(resourceURL).asString();
+        String result = new HttpParameterSetParser(resourceURL).asString();
 
         // then
         assertNotNull(resourceURL);
         assertEquals(resultExpected, result);
     }
-    
+
     @Test
-    public void testGivenNewActionWhenParseItShouldReturnFormattedURL() throws MalformedURLException, UnsupportedEncodingException {
+    public void testGivenNewActionWhenParseItShouldReturnFormattedURL()
+            throws MalformedURLException, UnsupportedEncodingException {
         // given
         String stubResourceId = "123";
         Integer limit = 1;
-        DataResource dpResource = new DataResourceBuilder()
-                                            .resource(stubResourceId)
-                                            .limit(limit)
-                                            .build();
-        String resultExpected = new StringBuilder()
-                                                 .append("?resource_id=").append(stubResourceId)
-                                                 .append("&limit=").append(limit)
-                                                 .toString();
+        DataResource dpResource =
+                new DataResourceBuilder().resource(stubResourceId).limit(limit).build();
+        String resultExpected =
+                new StringBuilder().append("?resource_id=").append(stubResourceId)
+                        .append("&limit=").append(limit).toString();
 
         // when
         HttpParameterSet parameters = DataResourceParser.toHttpParameterSet(dpResource);
-        String result =  new HttpParameterSetParser(parameters).asString();
+        String result = new HttpParameterSetParser(parameters).asString();
 
         // then
         assertNotNull(parameters);
         assertEquals(resultExpected, result);
     }
-    
+
     @Test
-    public void testGivenFilterWhenParseItShouldReturnFormattedURLWithFilter() throws MalformedURLException, UnsupportedEncodingException {
+    public void testGivenFilterWhenParseItShouldReturnFormattedURLWithFilter()
+            throws MalformedURLException, UnsupportedEncodingException {
         // given
         String stubResourceId = "123";
         Integer expectedLimit = 1;
         String expectedFilter = "Teste";
-        
-        DataResource dpResource = new DataResourceBuilder()
-                                            .resource(stubResourceId)
-                                            .limit(expectedLimit)
-                                            .filter(expectedFilter)
-                                            .build();
-        String resultExpected = new StringBuilder()
-                                                 .append("?resource_id=").append(stubResourceId)
-                                                 .append("&q=").append(expectedFilter)
-                                                 .append("&limit=").append(expectedLimit)
-                                                 .toString();
+
+        DataResource dpResource =
+                new DataResourceBuilder().resource(stubResourceId).limit(expectedLimit)
+                        .filter(expectedFilter).build();
+        String resultExpected =
+                new StringBuilder().append("?resource_id=").append(stubResourceId).append("&q=")
+                        .append(expectedFilter).append("&limit=").append(expectedLimit).toString();
 
         // when
         HttpParameterSet parameters = DataResourceParser.toHttpParameterSet(dpResource);
-        String result =  new HttpParameterSetParser(parameters).asString();
+        String result = new HttpParameterSetParser(parameters).asString();
 
         // then
         assertNotNull(parameters);
         assertEquals(resultExpected, result);
     }
-    
+
     @Test
-    public void testGivenFilterWithSpacesWhenParseItShouldReturnFormattedURLWithFilter() throws MalformedURLException, UnsupportedEncodingException {
+    public void testGivenFilterWithSpacesWhenParseItShouldReturnFormattedURLWithFilter()
+            throws MalformedURLException, UnsupportedEncodingException {
         // given
         String stubResourceId = "123";
         Integer expectedLimit = 1;
         String expectedFilter = "Test with spaces";
-        
+
         String actionExpected = DataPoaCommon.getProvider().getPackageListAction();
-        DataResource dpResource = new DataResourceBuilder().action(actionExpected)
-                                            .resource(stubResourceId)
-                                            .limit(expectedLimit)
-                                            .filter(expectedFilter)
-                                            .build();
-        String resultExpected = new StringBuilder().append("?resource_id=").append(stubResourceId)
-                                                   .append("&q=").append(URLEncoder.encode(expectedFilter, HttpClient.CHARSET))
-                                                   .append("&limit=").append(expectedLimit)
-                                                   .toString();
-        
+        DataResource dpResource =
+                new DataResourceBuilder().action(actionExpected).resource(stubResourceId)
+                        .limit(expectedLimit).filter(expectedFilter).build();
+        String resultExpected =
+                new StringBuilder().append("?resource_id=").append(stubResourceId).append("&q=")
+                        .append(URLEncoder.encode(expectedFilter, HttpClient.CHARSET))
+                        .append("&limit=").append(expectedLimit).toString();
+
         // when
         HttpParameterSet parameters = DataResourceParser.toHttpParameterSet(dpResource);
-        String result =  new HttpParameterSetParser(parameters).asString();
+        String result = new HttpParameterSetParser(parameters).asString();
 
         // then
         assertNotNull(parameters);
@@ -123,30 +115,31 @@ public class DataResourceParserTest extends TestCase {
     }
 
     @Test
-    public void testGivenEmptyResourceWhenParseItShouldReturnParameters() throws MalformedURLException, UnsupportedEncodingException {
+    public void testGivenEmptyResourceWhenParseItShouldReturnParameters()
+            throws MalformedURLException, UnsupportedEncodingException {
         // given
         String stubResourceId = "";
         Integer limit = 1;
-        DataResource dpResource = new DataResourceBuilder().resource(stubResourceId)
-                                                                      .limit(limit)
-                                                                      .build();
+        DataResource dpResource =
+                new DataResourceBuilder().resource(stubResourceId).limit(limit).build();
 
         // when
         HttpParameterSet parameter = DataResourceParser.toHttpParameterSet(dpResource);
 
-        // then    raise IllegalArgumentException
+        // then raise IllegalArgumentException
         assertNotNull(parameter);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void testGivenNullResourceWhenParseItShouldRaiseException() throws MalformedURLException, UnsupportedEncodingException {
+    public void testGivenNullResourceWhenParseItShouldRaiseException()
+            throws MalformedURLException, UnsupportedEncodingException {
         // given
         DataResource dpResource = null;
 
         // when
         DataResourceParser.toHttpParameterSet(dpResource);
 
-        // then    raise IllegalArgumentException
+        // then raise IllegalArgumentException
     }
 
 }

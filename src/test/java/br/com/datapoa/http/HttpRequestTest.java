@@ -20,15 +20,15 @@ public class HttpRequestTest {
     public void testGivenHttpConnectionWhenDoRequestItShouldReturnHttpResponse() throws IOException {
         // given
         InputStream stubInputStream = new ByteArrayInputStream("{ result:0 }".getBytes());
-        
+
         HttpURLConnection mockedHttpConnection = mock(HttpURLConnection.class);
         when(mockedHttpConnection.getInputStream()).thenReturn(stubInputStream);
-        
+
         HttpRequest httpRequest = new HttpRequest(mockedHttpConnection);
-        
+
         // when
         HttpResponse response = httpRequest.doRequest();
-        
+
         // then
         assertNotNull(response);
     }

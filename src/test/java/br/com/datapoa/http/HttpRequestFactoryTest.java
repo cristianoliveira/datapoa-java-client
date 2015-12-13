@@ -13,38 +13,39 @@ import br.com.datapoa.http.HttpRequestFactory;
 public class HttpRequestFactoryTest {
 
     @Test
-    public void testGivenMethodGETWhenGetRequestItShouldReturnHttpRequestWithGETConnecion() throws IOException 
-    {
+    public void testGivenMethodGETWhenGetRequestItShouldReturnHttpRequestWithGETConnecion()
+            throws IOException {
         // given
         String url = "http://stub.com";
-        
+
         HttpMethod method = HttpMethod.GET;
         String resultExpected = method.asString();
         HttpRequestFactory factory = new HttpRequestFactory();
-        
-        
-        // when 
+
+
+        // when
         HttpRequest request = factory.getRequest(method, url, null);
         String result = request.getHttpURLConnection().getRequestMethod();
-        
+
         // then
         assertEquals(resultExpected, result);
     }
-    
+
     @Test
-    public void testGivenMethodPOSTWhenGetRequestItShouldReturnHttpRequestWithPOSTConnecion() throws IOException {
+    public void testGivenMethodPOSTWhenGetRequestItShouldReturnHttpRequestWithPOSTConnecion()
+            throws IOException {
         // given
         String url = "http://stub.com";
-        
+
         HttpMethod method = HttpMethod.POST;
         String resultExpected = method.asString();
         HttpRequestFactory factory = new HttpRequestFactory();
-        
-        
-        // when 
+
+
+        // when
         HttpRequest request = factory.getRequest(method, url, null);
         String result = request.getHttpURLConnection().getRequestMethod();
-        
+
         // then
         assertEquals(resultExpected, result);
     }
