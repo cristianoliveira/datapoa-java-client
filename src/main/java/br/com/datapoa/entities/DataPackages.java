@@ -2,8 +2,8 @@ package br.com.datapoa.entities;
 
 import java.util.List;
 
-public class DataPackages extends Entity{
-    
+public class DataPackages extends Entity {
+
     private List<String> result;
 
     public List<String> getResult() {
@@ -13,5 +13,5 @@ public class DataPackages extends Entity{
     public void setResult(List<String> result) {
         this.result = result;
     }
-    
+
 }

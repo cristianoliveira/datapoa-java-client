@@ -15,14 +15,15 @@ public class HttpRequest {
 
     public HttpResponse doRequest() throws IOException {
 
-    	try {
-	    
-    		InputStream inStream = httpConnection.getInputStream();
-    		return new HttpResponse(inStream);
-    		
+        try {
+
+            InputStream inStream = httpConnection.getInputStream();
+            return new HttpResponse(inStream);
+
         } catch (FileNotFoundException fileNotFoundException) {
-	        
-        	throw new IOException("Provider return error: "+httpConnection.getResponseCode());
+
+            throw new IOException("Provider return error: "
+                    + httpConnection.getResponseCode());
         }
     }
 

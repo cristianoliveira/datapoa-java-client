@@ -18,7 +18,7 @@ public class HttpResponse {
             return null;
 
         BufferedReader in = new BufferedReader(new InputStreamReader(inStream,
-                        HttpClient.CHARSET));
+                HttpClient.CHARSET));
 
         StringBuilder response = new StringBuilder();
         String inputLine;

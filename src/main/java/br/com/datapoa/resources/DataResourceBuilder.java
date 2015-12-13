@@ -23,7 +23,7 @@ public class DataResourceBuilder {
         dpResource.setFilter(filter);
         return this;
     }
-    
+
     public DataResource build() {
         return dpResource;
     }

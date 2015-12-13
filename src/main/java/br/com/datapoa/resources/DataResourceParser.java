@@ -13,33 +13,36 @@ public class DataResourceParser {
 
     /**
      * 
-     *  Create HttpParameterSet from a resource
+     * Create HttpParameterSet from a resource
      * 
-     * @param dpResource DataResource Resource to be parsed
+     * @param dpResource
+     *            DataResource Resource to be parsed
      * @return HttpParameterSet Parameters to execute a HttpRequest
-     * @throws IllegalArgumentException when resource is null
-     * @throws MalformedURLException when resource has wrong values
-     * @throws UnsupportedEncodingException when resource has wrong values
+     * @throws IllegalArgumentException
+     *             when resource is null
+     * @throws MalformedURLException
+     *             when resource has wrong values
+     * @throws UnsupportedEncodingException
+     *             when resource has wrong values
      */
-    public static HttpParameterSet toHttpParameterSet(DataResource dpResource) throws MalformedURLException, UnsupportedEncodingException {
+    public static HttpParameterSet toHttpParameterSet(DataResource dpResource)
+            throws MalformedURLException, UnsupportedEncodingException {
 
-        if (dpResource == null) 
-              throw new IllegalArgumentException( "DataPoaResource must be informed.");
+        if (dpResource == null)
+            throw new IllegalArgumentException(
+                    "DataPoaResource must be informed.");
 
         DataResourceParameterSetBuilder dataUrlBuilder = new DataResourceParameterSetBuilder();
-        
-        if (dpResource.getResourceId()!= null)
-        {
+
+        if (dpResource.getResourceId() != null) {
             dataUrlBuilder.withResourceId(dpResource.getResourceId());
         }
-        
-        if (dpResource.getFilter() != null)
-        {
+
+        if (dpResource.getFilter() != null) {
             dataUrlBuilder.withFilter(dpResource.getFilter());
         }
 
-        if (dpResource.getLimit() != null)
-        {    
+        if (dpResource.getLimit() != null) {
             dataUrlBuilder.withLimit(dpResource.getLimit());
         }
 

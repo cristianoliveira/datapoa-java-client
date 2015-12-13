@@ -28,8 +28,7 @@ public class HttpParameterSetParser {
         return withoutLastCharacter(par);
     }
     
-    private String encode(String value) throws UnsupportedEncodingException
-    {
+    private String encode(String value) throws UnsupportedEncodingException {
         return URLEncoder.encode(value, HttpClient.CHARSET);
     }
 

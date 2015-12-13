@@ -13,7 +13,7 @@ public class DataResponseParser {
     }
 
     public <T> T parseTo(Class<T> clas) throws JsonSyntaxException {
-    	Gson gson = new GsonBuilder().create(); 
+        Gson gson = new GsonBuilder().create();
         return gson.fromJson(dpResponse.getJsonString(), clas);
     }
 }

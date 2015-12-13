@@ -1,6 +1,5 @@
 package br.com.datapoa.entities;
 
-
 public class DataEntity extends Entity {
 
     private DataResult result;
@@ -12,5 +11,5 @@ public class DataEntity extends Entity {
     public void setResult(DataResult result) {
         this.result = result;
     }
-    
+
 }

@@ -6,19 +6,17 @@ import br.com.datapoa.provider.IDataProvider;
 public class DataResource {
 
     private IDataProvider provider;
-	
-	private String action;
+
+    private String action;
     private String resourceId;
     private Integer limit;
     private String filter;
-    
-    DataResource()
-    {
-    	this.provider = DataPoaCommon.getProvider();
+
+    DataResource() {
+        this.provider = DataPoaCommon.getProvider();
     }
-    
-    public void setProvider(IDataProvider provider)
-    {
+
+    public void setProvider(IDataProvider provider) {
         this.provider = provider;
     }
 

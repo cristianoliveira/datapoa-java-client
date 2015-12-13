@@ -9,7 +9,7 @@ import com.google.gson.annotations.SerializedName;
 
 public class DataResult {
 
-	@SerializedName("resource_id")
+    @SerializedName("resource_id")
     private String resourceId;
     private List<DataField> fields;
     private List<JsonObject> records;
@@ -50,20 +50,20 @@ public class DataResult {
         this.total = total;
     }
 
-	public List<JsonObject> getRecords() {
-	    return records;
+    public List<JsonObject> getRecords() {
+        return records;
     }
 
-	public void setRecords(List<JsonObject> records) {
-	    this.records = records;
+    public void setRecords(List<JsonObject> records) {
+        this.records = records;
     }
 
-	public JsonObject getLinks() {
-	    return links;
+    public JsonObject getLinks() {
+        return links;
     }
 
-	public void setLinks(JsonObject links) {
-	    this.links = links;
+    public void setLinks(JsonObject links) {
+        this.links = links;
     }
 
 }

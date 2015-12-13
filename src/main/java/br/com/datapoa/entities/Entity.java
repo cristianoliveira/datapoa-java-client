@@ -6,7 +6,7 @@ public class Entity {
 
     private String help;
     private boolean success;
-    
+
     private JsonObject error;
 
     public String getHelp() {
@@ -25,17 +25,16 @@ public class Entity {
         this.success = success;
     }
 
-	public JsonObject getError() {
-	    return error;
+    public JsonObject getError() {
+        return error;
     }
 
-	public void setError(JsonObject error) {
-	    this.error = error;
+    public void setError(JsonObject error) {
+        this.error = error;
     }
 
-	public boolean hasError()
-	{
-		return error != null;
-	}
+    public boolean hasError() {
+        return error != null;
+    }
 
 }
